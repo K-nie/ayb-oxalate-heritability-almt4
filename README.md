@@ -1,8 +1,8 @@
 # Marker-based heritability and the aluminum-activated malate transporter ALMT4 anchor soluble-oxalate variation in African yam bean (Sphenostylis stenocarpa)
 
-Analysis code and result tables/figures for marker-based heritability and candidate-gene work on 13 seed-quality and anti-nutritional traits in the African yam bean DArTseq panel. Covers phenotype exploration, trait PCA, single- and multi-trait GBLUP, bootstrap and Bayesian heritability, mixed-model and FarmCPU/mrMLM GWAS, candidate-gene callouts against the Funannotate annotation, the ALMT4 protein-topology and orthology analysis, and breeding-decision tools (GEBV, optimal contribution selection, usefulness criterion, selection index).
+Analysis code and result tables for marker-based heritability and candidate-gene work on 13 seed-quality and anti-nutritional traits in the African yam bean DArTseq panel. Covers phenotype exploration, trait PCA, single- and multi-trait GBLUP, bootstrap and Bayesian heritability, mixed-model and FarmCPU/mrMLM GWAS, candidate-gene callouts against the Funannotate annotation, the ALMT4 protein-topology and orthology analysis, and breeding-decision tools (GEBV, optimal contribution selection, usefulness criterion, selection index).
 
-This repository contains the **analysis code and derived result tables/figures** for
+This repository contains the **analysis code and derived result tables** for
 the study. Raw genotype and phenotype data are archived separately (see Data below);
 manuscript drafts are not included.
 
@@ -10,7 +10,7 @@ manuscript drafts are not included.
 
 ```
 scripts/    numbered Python and R analysis scripts (shared helpers: _plotstyle, _pheno, _figstyle)
-results/    one directory per analysis stage, each with figures/, tables/, and a README.md
+results/    one directory per analysis stage, each with tables/ and a README.md
             documenting method, inputs, outputs, findings, and caveats
 refs/       machine-learning best-practice reference material
 ```
