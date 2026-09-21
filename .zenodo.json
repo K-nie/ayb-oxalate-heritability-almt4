@@ -1,6 +1,6 @@
 {
   "title": "Marker-based heritability and the aluminum-activated malate transporter ALMT4 anchor soluble-oxalate variation in African yam bean (Sphenostylis stenocarpa)",
-  "description": "Analysis code and result tables/figures for marker-based heritability and candidate-gene work on 13 seed-quality and anti-nutritional traits in the African yam bean DArTseq panel. Covers phenotype exploration, trait PCA, single- and multi-trait GBLUP, bootstrap and Bayesian heritability, mixed-model and FarmCPU/mrMLM GWAS, candidate-gene callouts against the Funannotate annotation, the ALMT4 protein-topology and orthology analysis, and breeding-decision tools (GEBV, optimal contribution selection, usefulness criterion, selection index).",
+  "description": "Analysis code and result tables for marker-based heritability and candidate-gene work on 13 seed-quality and anti-nutritional traits in the African yam bean DArTseq panel. Covers phenotype exploration, trait PCA, single- and multi-trait GBLUP, bootstrap and Bayesian heritability, mixed-model and FarmCPU/mrMLM GWAS, candidate-gene callouts against the Funannotate annotation, the ALMT4 protein-topology and orthology analysis, and breeding-decision tools (GEBV, optimal contribution selection, usefulness criterion, selection index).",
   "creators": [
     {
       "name": "Narh-Madey, Benjamin",
