@@ -1,0 +1,4 @@
+source,accession,label,span_start_aa,span_end_aa,comment
+PFAM,PF11744,PF11744 (ALMT family domain; N-terminal half),1,280,Funannotate HMMER+Pfam-A; canonical ALMT architecture used for figure spans
+PFAM,PF13515,PF13515 (FUSC-like / Membrane protein superfamily; C-terminal half),280,560,Funannotate HMMER+Pfam-A; canonical ALMT architecture used for figure spans
+InterPro,IPR020966,IPR020966 (InterPro: ALMT-family superfamily),1,560,

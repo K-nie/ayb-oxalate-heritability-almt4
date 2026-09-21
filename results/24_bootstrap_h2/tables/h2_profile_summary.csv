@@ -1,0 +1,14 @@
+trait,n_samples,n_markers_subset,h2_mle,h2_ci95_low,h2_ci95_high,ci_width,ci_kind,on_lower_bound,on_upper_bound
+Tannin,93,1588,0.001,0.001,0.22999999999999998,0.22899999999999998,one_sided_upper,True,False
+Phenol,93,1588,0.001,0.001,0.31,0.309,one_sided_upper,True,False
+Flavonoid,93,1588,0.001,0.001,0.22,0.219,one_sided_upper,True,False
+Antioxidant,93,1588,0.41,0.001,0.999,0.998,two_sided,False,False
+Seed_Length,95,1591,0.26,0.004413793103448276,0.66,0.6555862068965518,two_sided,False,False
+Seed_Width,95,1591,0.11,0.001,0.52,0.519,two_sided,False,False
+Seed_Thickness,95,1591,0.19,0.001,0.55,0.549,two_sided,False,False
+Mass_of_Seeds,95,1591,0.22,0.001,0.59,0.589,two_sided,False,False
+Seed_Coat_Tannin,95,1591,0.001,0.001,0.68,0.679,one_sided_upper,True,False
+Crude_Protein,92,1585,0.007827586206896553,0.001,0.62,0.619,two_sided,False,False
+Total_Oxalate,41,1474,0.16999999999999998,0.001,0.9130689655172414,0.9120689655172414,two_sided,False,False
+Soluble_Oxalate,41,1474,0.999,0.14,0.999,0.859,one_sided_lower,False,True
+Insoluble_Oxalate,41,1474,0.01806896551724138,0.001,0.81,0.809,two_sided,False,False

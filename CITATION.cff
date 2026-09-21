@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this analysis code or its outputs, please cite this repository and the accompanying manuscript."
+type: software
+title: "Marker-based heritability and the aluminum-activated malate transporter ALMT4 anchor soluble-oxalate variation in African yam bean (Sphenostylis stenocarpa)"
+authors:
+  - family-names: "Narh-Madey"
+    given-names: "Benjamin"
+    email: "narhmadey@wisc.edu"
+    affiliation: "Department of Genetics, University of Wisconsin-Madison"
+keywords:
+  - "African yam bean"
+  - "Sphenostylis stenocarpa"
+  - "oxalate"
+  - "ALMT4"
+  - "genomic heritability"
+  - "GBLUP"
+  - "multi-trait GBLUP"
+  - "GWAS"
+  - "candidate gene"
+  - "optimal contribution selection"
+  - "usefulness criterion"
+  - "plant breeding"
+license: "MIT"
+repository-code: "https://github.com/K-nie/ayb-oxalate-heritability-almt4"
+url: "https://github.com/K-nie/ayb-oxalate-heritability-almt4"

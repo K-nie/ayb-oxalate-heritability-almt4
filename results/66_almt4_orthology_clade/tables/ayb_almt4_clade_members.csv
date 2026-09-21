@@ -1,0 +1,15 @@
+tip_name,species,uniprot_id,is_focal
+AYB_ALMT4_Ss02,AYB,,False
+tr|V7CJW1|V7CJW1_PHAVU,Phaseolus vulgaris (common bean),V7CJW1,False
+tr|V7CL11|V7CL11_PHAVU,Phaseolus vulgaris (common bean),V7CL11,False
+tr|A0A4D6LN79|A0A4D6LN79_VIGUN,Vigna unguiculata (cowpea),A0A4D6LN79,False
+tr|K7K7E2|K7K7E2_SOYBN,Glycine max (soybean),K7K7E2,False
+tr|I1J6M4|I1J6M4_SOYBN,Glycine max (soybean),I1J6M4,False
+tr|I1KWT9|I1KWT9_SOYBN,Glycine max (soybean),I1KWT9,False
+AYB_ALMT4_Ss10,AYB,,True
+tr|A0A4D6N7X3|A0A4D6N7X3_VIGUN,Vigna unguiculata (cowpea),A0A4D6N7X3,False
+tr|V7BAP2|V7BAP2_PHAVU,Phaseolus vulgaris (common bean),V7BAP2,False
+tr|I1LEY0|I1LEY0_SOYBN,Glycine max (soybean),I1LEY0,False
+tr|K7LLU3|K7LLU3_SOYBN,Glycine max (soybean),K7LLU3,False
+tr|A0A0R0EAN5|A0A0R0EAN5_SOYBN,Glycine max (soybean),A0A0R0EAN5,False
+tr|A0A1S2XZY2|A0A1S2XZY2_CICAR,Cicer arietinum (chickpea),A0A1S2XZY2,False

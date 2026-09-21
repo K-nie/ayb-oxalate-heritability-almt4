@@ -1,0 +1,51 @@
+{
+  "title": "Marker-based heritability and the aluminum-activated malate transporter ALMT4 anchor soluble-oxalate variation in African yam bean (Sphenostylis stenocarpa)",
+  "description": "Analysis code and result tables/figures for marker-based heritability and candidate-gene work on 13 seed-quality and anti-nutritional traits in the African yam bean DArTseq panel. Covers phenotype exploration, trait PCA, single- and multi-trait GBLUP, bootstrap and Bayesian heritability, mixed-model and FarmCPU/mrMLM GWAS, candidate-gene callouts against the Funannotate annotation, the ALMT4 protein-topology and orthology analysis, and breeding-decision tools (GEBV, optimal contribution selection, usefulness criterion, selection index).",
+  "creators": [
+    {
+      "name": "Narh-Madey, Benjamin",
+      "affiliation": "Department of Genetics, University of Wisconsin-Madison",
+      "orcid": ""
+    }
+  ],
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "African yam bean",
+    "Sphenostylis stenocarpa",
+    "oxalate",
+    "ALMT4",
+    "genomic heritability",
+    "GBLUP",
+    "multi-trait GBLUP",
+    "GWAS",
+    "candidate gene",
+    "optimal contribution selection",
+    "usefulness criterion",
+    "plant breeding"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/K-nie/ayb-oxalate-heritability-almt4",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.13853757",
+      "relation": "isDerivedFrom",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "10.5281/zenodo.20348832",
+      "relation": "isDerivedFrom",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://www.ebi.ac.uk/ena/browser/view/PRJEB57813",
+      "relation": "isDerivedFrom",
+      "resource_type": "dataset"
+    }
+  ],
+  "notes": "Author under .creators is the code-side author. Manuscript co-authorship (Prof. B.D. Adewale and collaborators) is recorded on manuscript publication."
+}

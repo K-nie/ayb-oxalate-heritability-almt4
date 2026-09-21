@@ -1,0 +1,682 @@
+IQ-TREE 3.0.1 built Jul  9 2025
+
+Input file name: all_almt_aln.faa
+Type of analysis: tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 130897
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+Please also cite the following paper(s) for the feature(s) that you used:
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 142 sequences with 1552 amino-acid sites
+Number of constant sites: 700 (= 45.1031% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 700 (= 45.1031% of all sites)
+Number of parsimony informative sites: 717
+Number of distinct site patterns: 1069
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: LG+G4
+
+State frequencies: (model)
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 1.2346
+
+ Category  Relative_rate  Proportion
+  1         0.1813         0.2500
+  2         0.5375         0.2500
+  3         1.0301         0.2500
+  4         2.2511         0.2500
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -46357.2403 (s.e. 1454.6227)
+Unconstrained log-likelihood (without tree): -10145.6275
+Number of free parameters (#branches + #model parameters): 282
+Akaike information criterion (AIC) score: 93278.4806
+Corrected Akaike information criterion (AICc) score: 93404.2583
+Bayesian information criterion (BIC) score: 94786.4191
+
+Total tree length (sum of branch lengths): 30.1072
+Sum of internal branch lengths: 20.5432 (68.2336% of tree length)
+
+WARNING: 9 near-zero internal branches (<0.0006) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'AYB_ALMT12_Ss02' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++--AYB_ALMT12_Ss02
+|
+|                                                                +--AYB_ALMT4_Ss02
+|                                                             +--| (94)
+|                                                             |  |     +--tr|V7CJW1|V7CJW1_PHAVU
+|                                                             |  |  +--| (100)
+|                                                             |  |  |  +--tr|V7CL11|V7CL11_PHAVU
+|                                                             |  +--| (98)
+|                                                             |     +--tr|A0A4D6LN79|A0A4D6LN79_VIGUN
+|                                                          +--| (100)
+|                                                          |  |  +--tr|K7K7E2|K7K7E2_SOYBN
+|                                                          |  +--| (99)
+|                                                          |     |  +--tr|I1J6M4|I1J6M4_SOYBN
+|                                                          |     +--| (100)
+|                                                          |        +--tr|I1KWT9|I1KWT9_SOYBN
+|                                                       +--| (100)
+|                                                       |  |        +--AYB_ALMT4_Ss10
+|                                                       |  |     +--| (100)
+|                                                       |  |     |  |  +--tr|A0A4D6N7X3|A0A4D6N7X3_VIGUN
+|                                                       |  |     |  +--| (100)
+|                                                       |  |     |     +--tr|V7BAP2|V7BAP2_PHAVU
+|                                                       |  |  +--| (100)
+|                                                       |  |  |  |     +**tr|I1LEY0|I1LEY0_SOYBN
+|                                                       |  |  |  |  +--| (100)
+|                                                       |  |  |  |  |  +--tr|K7LLU3|K7LLU3_SOYBN
+|                                                       |  |  |  +--| (100)
+|                                                       |  |  |     +--tr|A0A0R0EAN5|A0A0R0EAN5_SOYBN
+|                                                       |  +--| (100)
+|                                                       |     +--tr|A0A1S2XZY2|A0A1S2XZY2_CICAR
+|                                                   +---| (100)
+|                                                   |   |                +**sp|Q9SHM1|ALMT6_ARATH
+|                                                   |   |             +--| (93)
+|                                                   |   |             |  +**tr|A0A1P8B2G1|A0A1P8B2G1_ARATH
+|                                                   |   |          +**| (54)
+|                                                   |   |          |  +--tr|A0A178VN50|A0A178VN50_ARATH
+|                                                   |   |       +--| (100)
+|                                                   |   |       |  +**tr|A0A5S9WYQ7|A0A5S9WYQ7_ARATH
+|                                                   |   |    +--| (96)
+|                                                   |   |    |  |     +--sp|Q93Z29|ALMT5_ARATH
+|                                                   |   |    |  |  +--| (99)
+|                                                   |   |    |  |  |  +--tr|A0A654EM95|A0A654EM95_ARATH
+|                                                   |   |    |  +--| (100)
+|                                                   |   |    |     +**tr|A0A178W424|A0A178W424_ARATH
+|                                                   |   +----| (100)
+|                                                   |        +--sp|Q9C6L8|ALMT4_ARATH
+|                                                +--| (40)
+|                                                |  |              +--AYB_ALMT9_Ss03
+|                                                |  |           +--| (100)
+|                                                |  |           |  |  +--tr|A0A4D6L9S2|A0A4D6L9S2_VIGUN
+|                                                |  |           |  +--| (100)
+|                                                |  |           |     +--tr|V7CSW1|V7CSW1_PHAVU
+|                                                |  |        +--| (100)
+|                                                |  |        |  +--tr|I1K5S7|I1K5S7_SOYBN
+|                                                |  |     +--| (100)
+|                                                |  |     |  |           +**tr|I1KQ48|I1KQ48_SOYBN
+|                                                |  |     |  |        +**| (63)
+|                                                |  |     |  |        |  +**tr|K7L4V8|K7L4V8_SOYBN
+|                                                |  |     |  |     +--| (100)
+|                                                |  |     |  |     |  +**tr|K7L4V7|K7L4V7_SOYBN
+|                                                |  |     |  |  +--| (100)
+|                                                |  |     |  |  |  +--tr|A0A368UMR9|A0A368UMR9_SOYBN
+|                                                |  |     |  +--| (100)
+|                                                |  |     |     |  +--tr|A0A4D6L9W0|A0A4D6L9W0_VIGUN
+|                                                |  |     |     +--| (100)
+|                                                |  |     |        +--tr|V7CTY9|V7CTY9_PHAVU
+|                                                |  |  +--| (100)
+|                                                |  |  |  +--tr|A0A1S3EH44|A0A1S3EH44_CICAR
+|                                                |  +--| (100)
+|                                                |     |        +--AYB_ALMT9_Ss04
+|                                                |     |     +--| (100)
+|                                                |     |     |  |  +--tr|A0A4D6LUX6|A0A4D6LUX6_VIGUN
+|                                                |     |     |  +--| (93)
+|                                                |     |     |     +--tr|V7C3N6|V7C3N6_PHAVU
+|                                                |     |  +--| (100)
+|                                                |     |  |  |  +--tr|A0A0R4J3N8|A0A0R4J3N8_SOYBN
+|                                                |     |  |  +--| (100)
+|                                                |     |  |     +--tr|I1L4D2|I1L4D2_SOYBN
+|                                                |     +--| (100)
+|                                                |        +--tr|A0A1S2Z0P9|A0A1S2Z0P9_CICAR
+|                                             +--| (46)
+|                                             |  |       +--sp|Q9LS46|ALMT9_ARATH
+|                                             |  |    +--| (97)
+|                                             |  |    |  +**tr|A0A654F8G0|A0A654F8G0_ARATH
+|                                             |  +----| (100)
+|                                             |       +**tr|A0A5S9XDP8|A0A5S9XDP8_ARATH
+|                                  +----------| (100)
+|                                  |          |                 +**sp|Q9LPQ8|ALMT3_ARATH
+|                                  |          |              +**| (84)
+|                                  |          |              |  +**tr|A0A5S9V191|A0A5S9V191_ARATH
+|                                  |          |           +**| (82)
+|                                  |          |           |  +**tr|A0A1P8AQE2|A0A1P8AQE2_ARATH
+|                                  |          |        +--| (97)
+|                                  |          |        |  +**tr|A0A178W855|A0A178W855_ARATH
+|                                  |          |     +--| (96)
+|                                  |          |     |  +--tr|A0A178W5R4|A0A178W5R4_ARATH
+|                                  |          +-----| (100)
+|                                  |                +--tr|A0A178W514|A0A178W514_ARATH
+|                            +-----| (100)
+|                            |     |                     +--tr|V7CMQ3|V7CMQ3_PHAVU
+|                            |     +---------------------| (100)
+|                            |                           +--tr|A0A4D6LTH2|A0A4D6LTH2_VIGUN
+|                         +--| (95)
+|                         |  |                                   +**sp|Q9SJE9|ALMT1_ARATH
+|                         |  |                                +--| (100)
+|                         |  |                                |  +**tr|A0A654E8W9|A0A654E8W9_ARATH
+|                         |  |                             +--| (100)
+|                         |  |                             |  |  +--sp|Q9SJE8|ALMT2_ARATH
+|                         |  |                             |  +--| (100)
+|                         |  |                             |     +--tr|A0A178WNJ6|A0A178WNJ6_ARATH
+|                         |  |                     +-------| (100)
+|                         |  |                     |       |      +**sp|Q9XIN1|ALMT7_ARATH
+|                         |  |                     |       |   +**| (64)
+|                         |  |                     |       |   |  +**tr|A0A1P8B0R6|A0A1P8B0R6_ARATH
+|                         |  |                     |       +---| (100)
+|                         |  |                     |           |  +--tr|A0A178VW61|A0A178VW61_ARATH
+|                         |  |                     |           +--| (96)
+|                         |  |                     |              +--tr|A0A5S9X1U1|A0A5S9X1U1_ARATH
+|                         |  |                  +--| (85)
+|                         |  |                  |  |          +--tr|A0A0R0HSN9|A0A0R0HSN9_SOYBN
+|                         |  |                  |  |       +--| (100)
+|                         |  |                  |  |       |  +--tr|I1LRL1|I1LRL1_SOYBN
+|                         |  |                  |  |    +--| (100)
+|                         |  |                  |  |    |  |  +--tr|A0A4D6LHF6|A0A4D6LHF6_VIGUN
+|                         |  |                  |  |    |  +--| (100)
+|                         |  |                  |  |    |     +--tr|V7AFV0|V7AFV0_PHAVU
+|                         |  |                  |  +----| (100)
+|                         |  |                  |       +--tr|A0A1S2YKN6|A0A1S2YKN6_CICAR
+|                         |  |               +--| (80)
+|                         |  |               |  |      +--tr|A0A0R0H776|A0A0R0H776_SOYBN
+|                         |  |               |  +------| (100)
+|                         |  |               |         +--tr|A0A1S2XDN8|A0A1S2XDN8_CICAR
+|                         |  |            +--| (59)
+|                         |  |            |  |             +--tr|A0A0R0H755|A0A0R0H755_SOYBN
+|                         |  |            |  |          +--| (100)
+|                         |  |            |  |          |  |  +--tr|A0A4D6N6Q9|A0A4D6N6Q9_VIGUN
+|                         |  |            |  |          |  +--| (100)
+|                         |  |            |  |          |     +--tr|V7BYA6|V7BYA6_PHAVU
+|                         |  |            |  |  +-------| (100)
+|                         |  |            |  |  |       +--tr|A0A1S2XDN6|A0A1S2XDN6_CICAR
+|                         |  |            |  +--| (45)
+|                         |  |            |     +------------------------tr|Q071L5|Q071L5_PHAVU
+|                         |  |      +-----| (100)
+|                         |  |      |     |                +**sp|Q9SRM9|ALMT8_ARATH
+|                         |  |      |     |             +**| (18)
+|                         |  |      |     |             |  +**tr|A0A1I9LRV2|A0A1I9LRV2_ARATH
+|                         |  |      |     |          +--| (92)
+|                         |  |      |     |          |  +**tr|A0A654F692|A0A654F692_ARATH
+|                         |  |      |     |  +-------| (100)
+|                         |  |      |     |  |       +**tr|A0A178V916|A0A178V916_ARATH
+|                         |  |      |     +--| (100)
+|                         |  |      |        |            +**tr|I1JQ88|I1JQ88_SOYBN
+|                         |  |      |        |         +--| (100)
+|                         |  |      |        |         |  +--tr|B2LUQ7|B2LUQ7_SOYBN
+|                         |  |      |        |      +--| (100)
+|                         |  |      |        |      |  +--tr|K7MZB8|K7MZB8_SOYBN
+|                         |  |      |        |   +--| (100)
+|                         |  |      |        |   |  |  +--tr|V7D0C7|V7D0C7_PHAVU
+|                         |  |      |        |   |  +--| (100)
+|                         |  |      |        |   |     +--tr|A0A4D6MAW5|A0A4D6MAW5_VIGUN
+|                         |  |      |        +---| (100)
+|                         |  |      |            +--tr|A0A1S2XUY8|A0A1S2XUY8_CICAR
+|                         |  +------| (100)
+|                         |         |              +**sp|O23086|ALMTA_ARATH
+|                         |         |    +---------| (100)
+|                         |         |    |         +**tr|A0A178UU23|A0A178UU23_ARATH
+|                         |         +----| (100)
+|                         |              |             +--tr|C6TGS0|C6TGS0_SOYBN
+|                         |              |          +--| (100)
+|                         |              |          |  +**tr|I1NIG7|I1NIG7_SOYBN
+|                         |              |       +--| (100)
+|                         |              |       |  +--tr|A0A0R0HUN7|A0A0R0HUN7_SOYBN
+|                         |              |    +--| (100)
+|                         |              |    |  |  +--tr|V7CW15|V7CW15_PHAVU
+|                         |              |    |  +--| (100)
+|                         |              |    |     +--tr|A0A4D6N6W9|A0A4D6N6W9_VIGUN
+|                         |              +----| (100)
+|                         |                   |     +**tr|A0A3Q7XZ43|A0A3Q7XZ43_CICAR
+|                         |                   |  +--| (100)
+|                         |                   |  |  |  +**tr|A0A1S2XWB1|A0A1S2XWB1_CICAR
+|                         |                   |  |  +--| (100)
+|                         |                   |  |     +**tr|A0A3Q7YF15|A0A3Q7YF15_CICAR
+|                         |                   +--| (100)
+|                         |                      +--tr|A0A1S2XW75|A0A1S2XW75_CICAR
+|                 +-------| (100)
+|                 |       |                          +--tr|I1JFB2|I1JFB2_SOYBN
+|                 |       |                       +--| (88)
+|                 |       |                       |  |  +--tr|I1JFB3|I1JFB3_SOYBN
+|                 |       |                       |  +--| (57)
+|                 |       |                       |     +--tr|C6T5R7|C6T5R7_SOYBN
+|                 |       |                    +--| (99)
+|                 |       |                    |  +--tr|A0A0R0HNH5|A0A0R0HNH5_SOYBN
+|                 |       |                 +--| (100)
+|                 |       |                 |  |  +--tr|A0A4D6LE49|A0A4D6LE49_VIGUN
+|                 |       |                 |  +--| (100)
+|                 |       |                 |     +--tr|V7BFH3|V7BFH3_PHAVU
+|                 |       +-----------------| (100)
+|                 |                         |        +--tr|V7CYE3|V7CYE3_PHAVU
+|                 |                         |     +--| (100)
+|                 |                         |     |  +--tr|A0A4D6MCX0|A0A4D6MCX0_VIGUN
+|                 |                         |  +--| (100)
+|                 |                         |  |  |  +--tr|A0A0R0EMZ0|A0A0R0EMZ0_SOYBN
+|                 |                         |  |  +--| (100)
+|                 |                         |  |     +**tr|A0A0R0ENZ7|A0A0R0ENZ7_SOYBN
+|                 |                         +--| (99)
+|                 |                            +---tr|A0A1S2XS55|A0A1S2XS55_CICAR
+|              +--| (64)
+|              |  |        +--sp|O49696|ALMTC_ARATH
+|              |  |     +--| (58)
+|              |  |     |  |          +--sp|Q3E9Z9|ALMTB_ARATH
+|              |  |     |  |  +-------| (100)
+|              |  |     |  |  |       +**tr|A0A178UWN9|A0A178UWN9_ARATH
+|              |  |     |  +--| (89)
+|              |  |     |     +**tr|A0A654FQD5|A0A654FQD5_ARATH
+|              |  |  +--| (100)
+|              |  |  |  +**tr|A0A5S9XTI0|A0A5S9XTI0_ARATH
+|              |  +--| (100)
+|              |     |     +--sp|Q9LS22|ALMTE_ARATH
+|              |     |  +--| (100)
+|              |     |  |  +**tr|A0A178UAL5|A0A178UAL5_ARATH
+|              |     +--| (100)
+|              |        |         +**sp|Q9LS23|ALMTD_ARATH
+|              |        |      +--| (100)
+|              |        |      |  +**tr|A0A5S9YBK2|A0A5S9YBK2_ARATH
+|              |        |   +--| (99)
+|              |        |   |  +--tr|A0A178UK00|A0A178UK00_ARATH
+|              |        +---| (100)
+|              |            +--tr|A0A654G8G4|A0A654G8G4_ARATH
+|           +--| (100)
+|           |  |            +--tr|I1NF40|I1NF40_SOYBN
+|           |  |         +--| (99)
+|           |  |         |  |  +--tr|V7BA27|V7BA27_PHAVU
+|           |  |         |  +--| (100)
+|           |  |         |     +--tr|A0A4D6N9A9|A0A4D6N9A9_VIGUN
+|           |  |      +--| (100)
+|           |  |      |  |        +**tr|I1NF39|I1NF39_SOYBN
+|           |  |      |  |     +**| (77)
+|           |  |      |  |     |  +**tr|A0A0R0ELE2|A0A0R0ELE2_SOYBN
+|           |  |      |  |  +--| (100)
+|           |  |      |  |  |  +**tr|K7N2P7|K7N2P7_SOYBN
+|           |  |      |  +--| (100)
+|           |  |      |     |  +--tr|K7LM09|K7LM09_SOYBN
+|           |  |      |     +--| (100)
+|           |  |      |        |  +**tr|K7LM10|K7LM10_SOYBN
+|           |  |      |        +--| (69)
+|           |  |      |           +**tr|K7LM12|K7LM12_SOYBN
+|           |  |   +--| (96)
+|           |  |   |  |  +**tr|A0A3Q7XQT4|A0A3Q7XQT4_CICAR
+|           |  |   |  +--| (100)
+|           |  |   |     +**tr|A0A1S2Y1G4|A0A1S2Y1G4_CICAR
+|           |  +---| (100)
+|           |      |     +--tr|A0A0R0I0N7|A0A0R0I0N7_SOYBN
+|           |      |  +--| (99)
+|           |      |  |  +--tr|I1NF41|I1NF41_SOYBN
+|           |      +--| (100)
+|           |         |  +--tr|A0A4D6N4N7|A0A4D6N4N7_VIGUN
+|           |         +--| (100)
+|           |            +--tr|V7BAA7|V7BAA7_PHAVU
+|        +--| (100)
+|        |  |              +**tr|A0A0R0JU32|A0A0R0JU32_SOYBN
+|        |  |           +**| (86)
+|        |  |           |  +--tr|A0A0R0JTT9|A0A0R0JTT9_SOYBN
+|        |  |        +--| (100)
+|        |  |        |  +**tr|I1K2K5|I1K2K5_SOYBN
+|        |  |     +--| (100)
+|        |  |     |  +--tr|I1MVD9|I1MVD9_SOYBN
+|        |  |  +--| (100)
+|        |  |  |  |  +--tr|K7MLU1|K7MLU1_SOYBN
+|        |  |  |  +--| (100)
+|        |  |  |     |  +**tr|K7MLU2|K7MLU2_SOYBN
+|        |  |  |     +**| (90)
+|        |  |  |        +**tr|I1MVD8|I1MVD8_SOYBN
+|        |  +--| (93)
+|        |     +--tr|A0A1S3ECQ7|A0A1S3ECQ7_CICAR
+|     +--| (99)
+|     |  +--tr|A0A1S2YY34|A0A1S2YY34_CICAR
+|  +--| (100)
+|  |  |  +--tr|I1LH08|I1LH08_SOYBN
+|  |  +--| (78)
+|  |     +--tr|I1J9K0|I1J9K0_SOYBN
++--| (100)
+|  +--tr|V7CH49|V7CH49_PHAVU
+|
++--tr|A0A4D6LR70|A0A4D6LR70_VIGUN
+
+Tree in newick format:
+
+(AYB_ALMT12_Ss02:0.0296921522,((((((((((((((((AYB_ALMT4_Ss02:0.0455006810,((tr|V7CJW1|V7CJW1_PHAVU:0.0242989595,tr|V7CL11|V7CL11_PHAVU:0.0072334976)100:0.0394268679,tr|A0A4D6LN79|A0A4D6LN79_VIGUN:0.0363560003)98:0.0119478232)94:0.0164320575,(tr|K7K7E2|K7K7E2_SOYBN:0.1462823059,(tr|I1J6M4|I1J6M4_SOYBN:0.0153055561,tr|I1KWT9|I1KWT9_SOYBN:0.0226707636)100:0.0375086306)99:0.0232503805)100:0.1723116472,(((AYB_ALMT4_Ss10:0.0812973516,(tr|A0A4D6N7X3|A0A4D6N7X3_VIGUN:0.1234437194,tr|V7BAP2|V7BAP2_PHAVU:0.0484132133)100:0.0330879210)100:0.0457319670,((tr|I1LEY0|I1LEY0_SOYBN:0.0000021742,tr|K7LLU3|K7LLU3_SOYBN:0.0050649518)100:0.0616567659,tr|A0A0R0EAN5|A0A0R0EAN5_SOYBN:0.0111793471)100:0.0480010072)100:0.1126050380,tr|A0A1S2XZY2|A0A1S2XZY2_CICAR:0.1489807275)100:0.1069114860)100:0.2100958598,(((((sp|Q9SHM1|ALMT6_ARATH:0.0000010000,tr|A0A1P8B2G1|A0A1P8B2G1_ARATH:0.0000010000)93:0.0022478157,tr|A0A178VN50|A0A178VN50_ARATH:0.1158330921)54:0.0000017415,tr|A0A5S9WYQ7|A0A5S9WYQ7_ARATH:0.0000021342)100:0.2056031333,((sp|Q93Z29|ALMT5_ARATH:0.0021790540,tr|A0A654EM95|A0A654EM95_ARATH:0.0065544706)99:0.0021861717,tr|A0A178W424|A0A178W424_ARATH:0.0000020374)100:0.1680422153)96:0.0592782755,sp|Q9C6L8|ALMT4_ARATH:0.1150573975)100:0.3609567014)100:0.2954251946,(((((AYB_ALMT9_Ss03:0.0639161121,(tr|A0A4D6L9S2|A0A4D6L9S2_VIGUN:0.0780245145,tr|V7CSW1|V7CSW1_PHAVU:0.0735265131)100:0.0784139039)100:0.0285560875,tr|I1K5S7|I1K5S7_SOYBN:0.0831326884)100:0.0267112380,((((tr|I1KQ48|I1KQ48_SOYBN:0.0000010000,tr|K7L4V8|K7L4V8_SOYBN:0.0000010000)63:0.0000022484,tr|K7L4V7|K7L4V7_SOYBN:0.0000025816)100:0.0277617077,tr|A0A368UMR9|A0A368UMR9_SOYBN:0.0449659729)100:0.0662984212,(tr|A0A4D6L9W0|A0A4D6L9W0_VIGUN:0.0641720842,tr|V7CTY9|V7CTY9_PHAVU:0.0354921946)100:0.0820926712)100:0.0406071139)100:0.0804575974,tr|A0A1S3EH44|A0A1S3EH44_CICAR:0.1397867949)100:0.0876398267,(((AYB_ALMT9_Ss04:0.0220514790,(tr|A0A4D6LUX6|A0A4D6LUX6_VIGUN:0.0244037354,tr|V7C3N6|V7C3N6_PHAVU:0.0311019391)93:0.0142009952)100:0.0273571231,(tr|A0A0R4J3N8|A0A0R4J3N8_SOYBN:0.0362763793,tr|I1L4D2|I1L4D2_SOYBN:0.0215805660)100:0.0390487984)100:0.0980326447,tr|A0A1S2Z0P9|A0A1S2Z0P9_CICAR:0.1448409617)100:0.0987747918)100:0.1132008249)40:0.0630276033,((sp|Q9LS46|ALMT9_ARATH:0.0077047259,tr|A0A654F8G0|A0A654F8G0_ARATH:0.0000010000)97:0.0038366440,tr|A0A5S9XDP8|A0A5S9XDP8_ARATH:0.0000020084)100:0.3798377095)46:0.0875457254,(((((sp|Q9LPQ8|ALMT3_ARATH:0.0000010000,tr|A0A5S9V191|A0A5S9V191_ARATH:0.0000010000)84:0.0000010000,tr|A0A1P8AQE2|A0A1P8AQE2_ARATH:0.0000010000)82:0.0000020636,tr|A0A178W855|A0A178W855_ARATH:0.0000010000)97:0.0077829913,tr|A0A178W5R4|A0A178W5R4_ARATH:0.0937878090)96:0.0067504795,tr|A0A178W514|A0A178W514_ARATH:0.0448661605)100:0.4159305115)100:0.8049606286,(tr|V7CMQ3|V7CMQ3_PHAVU:0.0203314915,tr|A0A4D6LTH2|A0A4D6LTH2_VIGUN:0.1639021867)100:1.5258168360)100:0.4776678597,((((((((sp|Q9SJE9|ALMT1_ARATH:0.0000010000,tr|A0A654E8W9|A0A654E8W9_ARATH:0.0000010000)100:0.2279513391,(sp|Q9SJE8|ALMT2_ARATH:0.0144398269,tr|A0A178WNJ6|A0A178WNJ6_ARATH:0.0078259586)100:0.0670236404)100:0.1004748077,((sp|Q9XIN1|ALMT7_ARATH:0.0000010000,tr|A0A1P8B0R6|A0A1P8B0R6_ARATH:0.0000010000)64:0.0000020839,(tr|A0A178VW61|A0A178VW61_ARATH:0.0027133425,tr|A0A5S9X1U1|A0A5S9X1U1_ARATH:0.0027136230)96:0.0027042187)100:0.3289503124)100:0.5605476113,(((tr|A0A0R0HSN9|A0A0R0HSN9_SOYBN:0.0172208167,tr|I1LRL1|I1LRL1_SOYBN:0.0149624801)100:0.0522050143,(tr|A0A4D6LHF6|A0A4D6LHF6_VIGUN:0.0221588756,tr|V7AFV0|V7AFV0_PHAVU:0.0408494090)100:0.0456084779)100:0.1955453226,tr|A0A1S2YKN6|A0A1S2YKN6_CICAR:0.1981222655)100:0.3935369323)85:0.1334146933,(tr|A0A0R0H776|A0A0R0H776_SOYBN:0.2532852821,tr|A0A1S2XDN8|A0A1S2XDN8_CICAR:0.2440356572)100:0.5374055717)80:0.0833139565,(((tr|A0A0R0H755|A0A0R0H755_SOYBN:0.1217434848,(tr|A0A4D6N6Q9|A0A4D6N6Q9_VIGUN:0.2126480320,tr|V7BYA6|V7BYA6_PHAVU:0.0717006256)100:0.1085641579)100:0.1800654567,tr|A0A1S2XDN6|A0A1S2XDN6_CICAR:0.1895679810)100:0.5548273260,tr|Q071L5|Q071L5_PHAVU:1.7347972690)45:0.0930289843)59:0.0839026984,((((sp|Q9SRM9|ALMT8_ARATH:0.0000010000,tr|A0A1I9LRV2|A0A1I9LRV2_ARATH:0.0000010000)18:0.0000010000,tr|A0A654F692|A0A654F692_ARATH:0.0000010000)92:0.0025481836,tr|A0A178V916|A0A178V916_ARATH:0.0000022280)100:0.6107009606,((((tr|I1JQ88|I1JQ88_SOYBN:0.0000010000,tr|B2LUQ7|B2LUQ7_SOYBN:0.0077493738)100:0.0360714766,tr|K7MZB8|K7MZB8_SOYBN:0.0561505763)100:0.0371368522,(tr|V7D0C7|V7D0C7_PHAVU:0.0531133020,tr|A0A4D6MAW5|A0A4D6MAW5_VIGUN:0.0679978754)100:0.0710133954)100:0.0908887585,tr|A0A1S2XUY8|A0A1S2XUY8_CICAR:0.1936375253)100:0.2916301915)100:0.1703311852)100:0.4340481788,((sp|O23086|ALMTA_ARATH:0.0000020608,tr|A0A178UU23|A0A178UU23_ARATH:0.0000028744)100:0.6954451044,((((tr|C6TGS0|C6TGS0_SOYBN:0.0203028968,tr|I1NIG7|I1NIG7_SOYBN:0.0000010000)100:0.0359415334,tr|A0A0R0HUN7|A0A0R0HUN7_SOYBN:0.0673520210)100:0.0401686202,(tr|V7CW15|V7CW15_PHAVU:0.0636870954,tr|A0A4D6N6W9|A0A4D6N6W9_VIGUN:0.0829191095)100:0.0533853812)100:0.1988314038,((tr|A0A3Q7XZ43|A0A3Q7XZ43_CICAR:0.0000010000,(tr|A0A1S2XWB1|A0A1S2XWB1_CICAR:0.0000010000,tr|A0A3Q7YF15|A0A3Q7YF15_CICAR:0.0000010000)100:0.1429084784)100:0.1257425324,tr|A0A1S2XW75|A0A1S2XW75_CICAR:0.0202037109)100:0.2146191165)100:0.3910182141)100:0.4003935121)100:0.4822032540)95:0.2140273264,((((tr|I1JFB2|I1JFB2_SOYBN:0.0095582880,(tr|I1JFB3|I1JFB3_SOYBN:0.0031574313,tr|C6T5R7|C6T5R7_SOYBN:0.0050671831)57:0.0008268748)88:0.0378070199,tr|A0A0R0HNH5|A0A0R0HNH5_SOYBN:0.1204841268)99:0.0968739884,(tr|A0A4D6LE49|A0A4D6LE49_VIGUN:0.0767953243,tr|V7BFH3|V7BFH3_PHAVU:0.0848613398)100:0.0757171711)100:0.2110175191,(((tr|V7CYE3|V7CYE3_PHAVU:0.1143608075,tr|A0A4D6MCX0|A0A4D6MCX0_VIGUN:0.1332907918)100:0.0801477773,(tr|A0A0R0EMZ0|A0A0R0EMZ0_SOYBN:0.0883522238,tr|A0A0R0ENZ7|A0A0R0ENZ7_SOYBN:0.0000026479)100:0.1265170437)100:0.1978682171,tr|A0A1S2XS55|A0A1S2XS55_CICAR:0.3162875798)99:0.1235794299)100:1.2595279570)100:0.5954037840,(((sp|O49696|ALMTC_ARATH:0.0019594747,((sp|Q3E9Z9|ALMTB_ARATH:0.0072584127,tr|A0A178UWN9|A0A178UWN9_ARATH:0.0000010000)100:0.5802696350,tr|A0A654FQD5|A0A654FQD5_ARATH:0.0000021169)89:0.0142797182)58:0.0040401682,tr|A0A5S9XTI0|A0A5S9XTI0_ARATH:0.0000029956)100:0.1876968007,((sp|Q9LS22|ALMTE_ARATH:0.0021233397,tr|A0A178UAL5|A0A178UAL5_ARATH:0.0000028190)100:0.1568315013,(((sp|Q9LS23|ALMTD_ARATH:0.0000010000,tr|A0A5S9YBK2|A0A5S9YBK2_ARATH:0.0000010000)100:0.0020696014,tr|A0A178UK00|A0A178UK00_ARATH:0.0044952136)99:0.0090175682,tr|A0A654G8G4|A0A654G8G4_ARATH:0.0043039946)100:0.2992042341)100:0.1236425623)100:0.1669046566)64:0.0895837615,((((tr|I1NF40|I1NF40_SOYBN:0.0485936037,(tr|V7BA27|V7BA27_PHAVU:0.0934087249,tr|A0A4D6N9A9|A0A4D6N9A9_VIGUN:0.1969085197)100:0.0721280608)99:0.0222987200,(((tr|I1NF39|I1NF39_SOYBN:0.0000010000,tr|A0A0R0ELE2|A0A0R0ELE2_SOYBN:0.0000010000)77:0.0000010000,tr|K7N2P7|K7N2P7_SOYBN:0.0000010000)100:0.0895852032,(tr|K7LM09|K7LM09_SOYBN:0.0150992368,(tr|K7LM10|K7LM10_SOYBN:0.0000023796,tr|K7LM12|K7LM12_SOYBN:0.0000010000)69:0.0057104974)100:0.1009779965)100:0.1116663797)100:0.0992011389,(tr|A0A3Q7XQT4|A0A3Q7XQT4_CICAR:0.0000010000,tr|A0A1S2Y1G4|A0A1S2Y1G4_CICAR:0.0000010000)100:0.2503679736)96:0.0660430578,((tr|A0A0R0I0N7|A0A0R0I0N7_SOYBN:0.0181231701,tr|I1NF41|I1NF41_SOYBN:0.0336439654)99:0.0266296696,(tr|A0A4D6N4N7|A0A4D6N4N7_VIGUN:0.0631141107,tr|V7BAA7|V7BAA7_PHAVU:0.0626906532)100:0.0738065658)100:0.2159282547)100:0.2817879783)100:0.1737957305,(((((tr|A0A0R0JU32|A0A0R0JU32_SOYBN:0.0000010000,tr|A0A0R0JTT9|A0A0R0JTT9_SOYBN:0.0184571759)86:0.0000025074,tr|I1K2K5|I1K2K5_SOYBN:0.0000023602)100:0.0521116134,tr|I1MVD9|I1MVD9_SOYBN:0.0462036933)100:0.1323242410,(tr|K7MLU1|K7MLU1_SOYBN:0.0194160065,(tr|K7MLU2|K7MLU2_SOYBN:0.0000010000,tr|I1MVD8|I1MVD8_SOYBN:0.0000010000)90:0.0000021799)100:0.2059071643)100:0.1308733299,tr|A0A1S3ECQ7|A0A1S3ECQ7_CICAR:0.2602835994)93:0.0408354751)100:0.0988199865,tr|A0A1S2YY34|A0A1S2YY34_CICAR:0.1506436978)99:0.0712114245,(tr|I1LH08|I1LH08_SOYBN:0.0244608461,tr|I1J9K0|I1J9K0_SOYBN:0.0182076413)78:0.0097010136)100:0.0352592163,tr|V7CH49|V7CH49_PHAVU:0.0172632097)100:0.0086482409,tr|A0A4D6LR70|A0A4D6LR70_VIGUN:0.0895270761);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -46357.647022
+Robinson-Foulds distance between ML tree and consensus tree: 6
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++--AYB_ALMT12_Ss02
+|
+|                                                          +--AYB_ALMT4_Ss02
+|                                                       +--| (94)
+|                                                       |  |     +--tr|V7CJW1|V7CJW1_PHAVU
+|                                                       |  |  +--| (100)
+|                                                       |  |  |  +--tr|V7CL11|V7CL11_PHAVU
+|                                                       |  +--| (98)
+|                                                       |     +--tr|A0A4D6LN79|A0A4D6LN79_VIGUN
+|                                                    +--| (100)
+|                                                    |  |  +--tr|K7K7E2|K7K7E2_SOYBN
+|                                                    |  +--| (99)
+|                                                    |     |  +--tr|I1J6M4|I1J6M4_SOYBN
+|                                                    |     +--| (100)
+|                                                    |        +--tr|I1KWT9|I1KWT9_SOYBN
+|                                                 +--| (100)
+|                                                 |  |        +--AYB_ALMT4_Ss10
+|                                                 |  |     +--| (100)
+|                                                 |  |     |  |  +--tr|A0A4D6N7X3|A0A4D6N7X3_VIGUN
+|                                                 |  |     |  +--| (100)
+|                                                 |  |     |     +--tr|V7BAP2|V7BAP2_PHAVU
+|                                                 |  |  +--| (100)
+|                                                 |  |  |  |     +--tr|I1LEY0|I1LEY0_SOYBN
+|                                                 |  |  |  |  +--| (100)
+|                                                 |  |  |  |  |  +--tr|K7LLU3|K7LLU3_SOYBN
+|                                                 |  |  |  +--| (100)
+|                                                 |  |  |     +--tr|A0A0R0EAN5|A0A0R0EAN5_SOYBN
+|                                                 |  +--| (100)
+|                                                 |     +--tr|A0A1S2XZY2|A0A1S2XZY2_CICAR
+|                                              +--| (100)
+|                                              |  |                +--sp|Q9SHM1|ALMT6_ARATH
+|                                              |  |             +--| (93)
+|                                              |  |             |  +--tr|A0A1P8B2G1|A0A1P8B2G1_ARATH
+|                                              |  |          +--| (54)
+|                                              |  |          |  +--tr|A0A178VN50|A0A178VN50_ARATH
+|                                              |  |       +--| (100)
+|                                              |  |       |  +--tr|A0A5S9WYQ7|A0A5S9WYQ7_ARATH
+|                                              |  |    +--| (96)
+|                                              |  |    |  |     +--sp|Q93Z29|ALMT5_ARATH
+|                                              |  |    |  |  +--| (99)
+|                                              |  |    |  |  |  +--tr|A0A654EM95|A0A654EM95_ARATH
+|                                              |  |    |  +--| (100)
+|                                              |  |    |     +--tr|A0A178W424|A0A178W424_ARATH
+|                                              |  +----| (100)
+|                                              |       +--sp|Q9C6L8|ALMT4_ARATH
+|                                  +-----------| (100)
+|                                  |           |                 +--AYB_ALMT9_Ss03
+|                                  |           |              +--| (100)
+|                                  |           |              |  |  +--tr|A0A4D6L9S2|A0A4D6L9S2_VIGUN
+|                                  |           |              |  +--| (100)
+|                                  |           |              |     +--tr|V7CSW1|V7CSW1_PHAVU
+|                                  |           |           +--| (100)
+|                                  |           |           |  +--tr|I1K5S7|I1K5S7_SOYBN
+|                                  |           |        +--| (100)
+|                                  |           |        |  |           +--tr|I1KQ48|I1KQ48_SOYBN
+|                                  |           |        |  |        +--| (63)
+|                                  |           |        |  |        |  +--tr|K7L4V8|K7L4V8_SOYBN
+|                                  |           |        |  |     +--| (100)
+|                                  |           |        |  |     |  +--tr|K7L4V7|K7L4V7_SOYBN
+|                                  |           |        |  |  +--| (100)
+|                                  |           |        |  |  |  +--tr|A0A368UMR9|A0A368UMR9_SOYBN
+|                                  |           |        |  +--| (100)
+|                                  |           |        |     |  +--tr|A0A4D6L9W0|A0A4D6L9W0_VIGUN
+|                                  |           |        |     +--| (100)
+|                                  |           |        |        +--tr|V7CTY9|V7CTY9_PHAVU
+|                                  |           |     +--| (100)
+|                                  |           |     |  +--tr|A0A1S3EH44|A0A1S3EH44_CICAR
+|                                  |           |  +--| (100)
+|                                  |           |  |  |        +--AYB_ALMT9_Ss04
+|                                  |           |  |  |     +--| (100)
+|                                  |           |  |  |     |  |  +--tr|A0A4D6LUX6|A0A4D6LUX6_VIGUN
+|                                  |           |  |  |     |  +--| (93)
+|                                  |           |  |  |     |     +--tr|V7C3N6|V7C3N6_PHAVU
+|                                  |           |  |  |  +--| (100)
+|                                  |           |  |  |  |  |  +--tr|A0A0R4J3N8|A0A0R4J3N8_SOYBN
+|                                  |           |  |  |  |  +--| (100)
+|                                  |           |  |  |  |     +--tr|I1L4D2|I1L4D2_SOYBN
+|                                  |           |  |  +--| (100)
+|                                  |           |  |     +--tr|A0A1S2Z0P9|A0A1S2Z0P9_CICAR
+|                                  |           +--| (51)
+|                                  |              |          +--sp|Q9LS46|ALMT9_ARATH
+|                                  |              |       +--| (97)
+|                                  |              |       |  +--tr|A0A654F8G0|A0A654F8G0_ARATH
+|                                  |              |  +----| (100)
+|                                  |              |  |    +--tr|A0A5S9XDP8|A0A5S9XDP8_ARATH
+|                                  |              +--| (31)
+|                                  |                 |                  +--sp|Q9LPQ8|ALMT3_ARATH
+|                                  |                 |               +--| (84)
+|                                  |                 |               |  +--tr|A0A5S9V191|A0A5S9V191_ARATH
+|                                  |                 |            +--| (82)
+|                                  |                 |            |  +--tr|A0A1P8AQE2|A0A1P8AQE2_ARATH
+|                                  |                 |         +--| (97)
+|                                  |                 |         |  +--tr|A0A178W855|A0A178W855_ARATH
+|                                  |                 |      +--| (96)
+|                                  |                 |      |  +--tr|A0A178W5R4|A0A178W5R4_ARATH
+|                                  |                 +------| (100)
+|                                  |                        +--tr|A0A178W514|A0A178W514_ARATH
+|                            +-----| (100)
+|                            |     |                     +--tr|V7CMQ3|V7CMQ3_PHAVU
+|                            |     +---------------------| (100)
+|                            |                           +--tr|A0A4D6LTH2|A0A4D6LTH2_VIGUN
+|                         +--| (95)
+|                         |  |                                   +--sp|Q9SJE9|ALMT1_ARATH
+|                         |  |                                +--| (100)
+|                         |  |                                |  +--tr|A0A654E8W9|A0A654E8W9_ARATH
+|                         |  |                             +--| (100)
+|                         |  |                             |  |  +--sp|Q9SJE8|ALMT2_ARATH
+|                         |  |                             |  +--| (100)
+|                         |  |                             |     +--tr|A0A178WNJ6|A0A178WNJ6_ARATH
+|                         |  |                     +-------| (100)
+|                         |  |                     |       |      +--sp|Q9XIN1|ALMT7_ARATH
+|                         |  |                     |       |   +--| (64)
+|                         |  |                     |       |   |  +--tr|A0A1P8B0R6|A0A1P8B0R6_ARATH
+|                         |  |                     |       +---| (100)
+|                         |  |                     |           |  +--tr|A0A178VW61|A0A178VW61_ARATH
+|                         |  |                     |           +--| (96)
+|                         |  |                     |              +--tr|A0A5S9X1U1|A0A5S9X1U1_ARATH
+|                         |  |                  +--| (85)
+|                         |  |                  |  |          +--tr|A0A0R0HSN9|A0A0R0HSN9_SOYBN
+|                         |  |                  |  |       +--| (100)
+|                         |  |                  |  |       |  +--tr|I1LRL1|I1LRL1_SOYBN
+|                         |  |                  |  |    +--| (100)
+|                         |  |                  |  |    |  |  +--tr|A0A4D6LHF6|A0A4D6LHF6_VIGUN
+|                         |  |                  |  |    |  +--| (100)
+|                         |  |                  |  |    |     +--tr|V7AFV0|V7AFV0_PHAVU
+|                         |  |                  |  +----| (100)
+|                         |  |                  |       +--tr|A0A1S2YKN6|A0A1S2YKN6_CICAR
+|                         |  |               +--| (80)
+|                         |  |               |  |      +--tr|A0A0R0H776|A0A0R0H776_SOYBN
+|                         |  |               |  +------| (100)
+|                         |  |               |         +--tr|A0A1S2XDN8|A0A1S2XDN8_CICAR
+|                         |  |            +--| (59)
+|                         |  |            |  |             +--tr|A0A0R0H755|A0A0R0H755_SOYBN
+|                         |  |            |  |          +--| (100)
+|                         |  |            |  |          |  |  +--tr|A0A4D6N6Q9|A0A4D6N6Q9_VIGUN
+|                         |  |            |  |          |  +--| (100)
+|                         |  |            |  |          |     +--tr|V7BYA6|V7BYA6_PHAVU
+|                         |  |            |  |  +-------| (100)
+|                         |  |            |  |  |       +--tr|A0A1S2XDN6|A0A1S2XDN6_CICAR
+|                         |  |            |  +--| (45)
+|                         |  |            |     +------------------------tr|Q071L5|Q071L5_PHAVU
+|                         |  |      +-----| (100)
+|                         |  |      |     |             +--sp|Q9SRM9|ALMT8_ARATH
+|                         |  |      |     |          +--| (92)
+|                         |  |      |     |          |  |  +--tr|A0A1I9LRV2|A0A1I9LRV2_ARATH
+|                         |  |      |     |          |  +--| (56)
+|                         |  |      |     |          |     +--tr|A0A654F692|A0A654F692_ARATH
+|                         |  |      |     |  +-------| (100)
+|                         |  |      |     |  |       +--tr|A0A178V916|A0A178V916_ARATH
+|                         |  |      |     +--| (100)
+|                         |  |      |        |            +--tr|I1JQ88|I1JQ88_SOYBN
+|                         |  |      |        |         +--| (100)
+|                         |  |      |        |         |  +--tr|B2LUQ7|B2LUQ7_SOYBN
+|                         |  |      |        |      +--| (100)
+|                         |  |      |        |      |  +--tr|K7MZB8|K7MZB8_SOYBN
+|                         |  |      |        |   +--| (100)
+|                         |  |      |        |   |  |  +--tr|V7D0C7|V7D0C7_PHAVU
+|                         |  |      |        |   |  +--| (100)
+|                         |  |      |        |   |     +--tr|A0A4D6MAW5|A0A4D6MAW5_VIGUN
+|                         |  |      |        +---| (100)
+|                         |  |      |            +--tr|A0A1S2XUY8|A0A1S2XUY8_CICAR
+|                         |  +------| (100)
+|                         |         |              +--sp|O23086|ALMTA_ARATH
+|                         |         |    +---------| (100)
+|                         |         |    |         +--tr|A0A178UU23|A0A178UU23_ARATH
+|                         |         +----| (100)
+|                         |              |             +--tr|C6TGS0|C6TGS0_SOYBN
+|                         |              |          +--| (100)
+|                         |              |          |  +--tr|I1NIG7|I1NIG7_SOYBN
+|                         |              |       +--| (100)
+|                         |              |       |  +--tr|A0A0R0HUN7|A0A0R0HUN7_SOYBN
+|                         |              |    +--| (100)
+|                         |              |    |  |  +--tr|V7CW15|V7CW15_PHAVU
+|                         |              |    |  +--| (100)
+|                         |              |    |     +--tr|A0A4D6N6W9|A0A4D6N6W9_VIGUN
+|                         |              +----| (100)
+|                         |                   |     +--tr|A0A3Q7XZ43|A0A3Q7XZ43_CICAR
+|                         |                   |  +--| (100)
+|                         |                   |  |  |  +--tr|A0A1S2XWB1|A0A1S2XWB1_CICAR
+|                         |                   |  |  +--| (100)
+|                         |                   |  |     +--tr|A0A3Q7YF15|A0A3Q7YF15_CICAR
+|                         |                   +--| (100)
+|                         |                      +--tr|A0A1S2XW75|A0A1S2XW75_CICAR
+|                 +-------| (100)
+|                 |       |                          +--tr|I1JFB2|I1JFB2_SOYBN
+|                 |       |                       +--| (88)
+|                 |       |                       |  |  +--tr|I1JFB3|I1JFB3_SOYBN
+|                 |       |                       |  +--| (57)
+|                 |       |                       |     +--tr|C6T5R7|C6T5R7_SOYBN
+|                 |       |                    +--| (99)
+|                 |       |                    |  +--tr|A0A0R0HNH5|A0A0R0HNH5_SOYBN
+|                 |       |                 +--| (100)
+|                 |       |                 |  |  +--tr|A0A4D6LE49|A0A4D6LE49_VIGUN
+|                 |       |                 |  +--| (100)
+|                 |       |                 |     +--tr|V7BFH3|V7BFH3_PHAVU
+|                 |       +-----------------| (100)
+|                 |                         |        +--tr|V7CYE3|V7CYE3_PHAVU
+|                 |                         |     +--| (100)
+|                 |                         |     |  +--tr|A0A4D6MCX0|A0A4D6MCX0_VIGUN
+|                 |                         |  +--| (100)
+|                 |                         |  |  |  +--tr|A0A0R0EMZ0|A0A0R0EMZ0_SOYBN
+|                 |                         |  |  +--| (100)
+|                 |                         |  |     +--tr|A0A0R0ENZ7|A0A0R0ENZ7_SOYBN
+|                 |                         +--| (99)
+|                 |                            +---tr|A0A1S2XS55|A0A1S2XS55_CICAR
+|              +--| (64)
+|              |  |        +--sp|O49696|ALMTC_ARATH
+|              |  |     +--| (58)
+|              |  |     |  |          +--sp|Q3E9Z9|ALMTB_ARATH
+|              |  |     |  |  +-------| (100)
+|              |  |     |  |  |       +--tr|A0A178UWN9|A0A178UWN9_ARATH
+|              |  |     |  +--| (89)
+|              |  |     |     +--tr|A0A654FQD5|A0A654FQD5_ARATH
+|              |  |  +--| (100)
+|              |  |  |  +--tr|A0A5S9XTI0|A0A5S9XTI0_ARATH
+|              |  +--| (100)
+|              |     |     +--sp|Q9LS22|ALMTE_ARATH
+|              |     |  +--| (100)
+|              |     |  |  +--tr|A0A178UAL5|A0A178UAL5_ARATH
+|              |     +--| (100)
+|              |        |         +--sp|Q9LS23|ALMTD_ARATH
+|              |        |      +--| (100)
+|              |        |      |  +--tr|A0A5S9YBK2|A0A5S9YBK2_ARATH
+|              |        |   +--| (99)
+|              |        |   |  +--tr|A0A178UK00|A0A178UK00_ARATH
+|              |        +---| (100)
+|              |            +--tr|A0A654G8G4|A0A654G8G4_ARATH
+|           +--| (100)
+|           |  |            +--tr|I1NF40|I1NF40_SOYBN
+|           |  |         +--| (99)
+|           |  |         |  |  +--tr|V7BA27|V7BA27_PHAVU
+|           |  |         |  +--| (100)
+|           |  |         |     +--tr|A0A4D6N9A9|A0A4D6N9A9_VIGUN
+|           |  |      +--| (100)
+|           |  |      |  |        +--tr|I1NF39|I1NF39_SOYBN
+|           |  |      |  |     +--| (77)
+|           |  |      |  |     |  +--tr|A0A0R0ELE2|A0A0R0ELE2_SOYBN
+|           |  |      |  |  +--| (100)
+|           |  |      |  |  |  +--tr|K7N2P7|K7N2P7_SOYBN
+|           |  |      |  +--| (100)
+|           |  |      |     |  +--tr|K7LM09|K7LM09_SOYBN
+|           |  |      |     +--| (100)
+|           |  |      |        |  +--tr|K7LM10|K7LM10_SOYBN
+|           |  |      |        +--| (69)
+|           |  |      |           +--tr|K7LM12|K7LM12_SOYBN
+|           |  |   +--| (96)
+|           |  |   |  |  +--tr|A0A3Q7XQT4|A0A3Q7XQT4_CICAR
+|           |  |   |  +--| (100)
+|           |  |   |     +--tr|A0A1S2Y1G4|A0A1S2Y1G4_CICAR
+|           |  +---| (100)
+|           |      |     +--tr|A0A0R0I0N7|A0A0R0I0N7_SOYBN
+|           |      |  +--| (99)
+|           |      |  |  +--tr|I1NF41|I1NF41_SOYBN
+|           |      +--| (100)
+|           |         |  +--tr|A0A4D6N4N7|A0A4D6N4N7_VIGUN
+|           |         +--| (100)
+|           |            +--tr|V7BAA7|V7BAA7_PHAVU
+|        +--| (100)
+|        |  |              +--tr|A0A0R0JU32|A0A0R0JU32_SOYBN
+|        |  |           +--| (86)
+|        |  |           |  +--tr|A0A0R0JTT9|A0A0R0JTT9_SOYBN
+|        |  |        +--| (100)
+|        |  |        |  +--tr|I1K2K5|I1K2K5_SOYBN
+|        |  |     +--| (100)
+|        |  |     |  +--tr|I1MVD9|I1MVD9_SOYBN
+|        |  |  +--| (100)
+|        |  |  |  |  +--tr|K7MLU1|K7MLU1_SOYBN
+|        |  |  |  +--| (100)
+|        |  |  |     |  +--tr|K7MLU2|K7MLU2_SOYBN
+|        |  |  |     +--| (90)
+|        |  |  |        +--tr|I1MVD8|I1MVD8_SOYBN
+|        |  +--| (93)
+|        |     +--tr|A0A1S3ECQ7|A0A1S3ECQ7_CICAR
+|     +--| (99)
+|     |  +--tr|A0A1S2YY34|A0A1S2YY34_CICAR
+|  +--| (100)
+|  |  |  +--tr|I1LH08|I1LH08_SOYBN
+|  |  +--| (78)
+|  |     +--tr|I1J9K0|I1J9K0_SOYBN
++--| (100)
+|  +--tr|V7CH49|V7CH49_PHAVU
+|
++--tr|A0A4D6LR70|A0A4D6LR70_VIGUN
+
+
+Consensus tree in newick format: 
+
+(AYB_ALMT12_Ss02:0.0296209379,((((((((((((((AYB_ALMT4_Ss02:0.0454179423,((tr|V7CJW1|V7CJW1_PHAVU:0.0242416618,tr|V7CL11|V7CL11_PHAVU:0.0072241555)100:0.0393576788,tr|A0A4D6LN79|A0A4D6LN79_VIGUN:0.0362851253)98:0.0119067313)94:0.0165481739,(tr|K7K7E2|K7K7E2_SOYBN:0.1459333252,(tr|I1J6M4|I1J6M4_SOYBN:0.0152354163,tr|I1KWT9|I1KWT9_SOYBN:0.0226765441)100:0.0374773985)99:0.0230780573)100:0.1695004567,(((AYB_ALMT4_Ss10:0.0811758177,(tr|A0A4D6N7X3|A0A4D6N7X3_VIGUN:0.1230015051,tr|V7BAP2|V7BAP2_PHAVU:0.0482849631)100:0.0329256308)100:0.0455315411,((tr|I1LEY0|I1LEY0_SOYBN:0.0000024235,tr|K7LLU3|K7LLU3_SOYBN:0.0050529063)100:0.0615112819,tr|A0A0R0EAN5|A0A0R0EAN5_SOYBN:0.0111295681)100:0.0478137453)100:0.1126685140,tr|A0A1S2XZY2|A0A1S2XZY2_CICAR:0.1478286674)100:0.1091718738)100:0.2072220617,(((((sp|Q9SHM1|ALMT6_ARATH:0.0000022573,tr|A0A1P8B2G1|A0A1P8B2G1_ARATH:0.0000021107)93:0.0013162387,tr|A0A178VN50|A0A178VN50_ARATH:0.1156709326)54:0.0009265457,tr|A0A5S9WYQ7|A0A5S9WYQ7_ARATH:0.0000022573)100:0.2060862505,((sp|Q93Z29|ALMT5_ARATH:0.0021724098,tr|A0A654EM95|A0A654EM95_ARATH:0.0065365576)99:0.0021794937,tr|A0A178W424|A0A178W424_ARATH:0.0000022590)100:0.1675609932)96:0.0588184802,sp|Q9C6L8|ALMT4_ARATH:0.1147281306)100:0.3562208529)100:0.2095199215,((((((AYB_ALMT9_Ss03:0.0637427160,(tr|A0A4D6L9S2|A0A4D6L9S2_VIGUN:0.0778066713,tr|V7CSW1|V7CSW1_PHAVU:0.0733522335)100:0.0782014323)100:0.0284750749,tr|I1K5S7|I1K5S7_SOYBN:0.0829268614)100:0.0264950440,((((tr|I1KQ48|I1KQ48_SOYBN:0.0000022573,tr|K7L4V8|K7L4V8_SOYBN:0.0000022573)63:0.0000022573,tr|K7L4V7|K7L4V7_SOYBN:0.0000022611)100:0.0276811489,tr|A0A368UMR9|A0A368UMR9_SOYBN:0.0448612751)100:0.0661172215,(tr|A0A4D6L9W0|A0A4D6L9W0_VIGUN:0.0639979784,tr|V7CTY9|V7CTY9_PHAVU:0.0353989351)100:0.0818837892)100:0.0406230095)100:0.0810175472,tr|A0A1S3EH44|A0A1S3EH44_CICAR:0.1389308265)100:0.0869013620,(((AYB_ALMT9_Ss04:0.0220026947,(tr|A0A4D6LUX6|A0A4D6LUX6_VIGUN:0.0243375931,tr|V7C3N6|V7C3N6_PHAVU:0.0310210087)93:0.0141622976)100:0.0272274264,(tr|A0A0R4J3N8|A0A0R4J3N8_SOYBN:0.0361843629,tr|I1L4D2|I1L4D2_SOYBN:0.0215193339)100:0.0390942906)100:0.0979381808,tr|A0A1S2Z0P9|A0A1S2Z0P9_CICAR:0.1442345575)100:0.0985888741)100:0.1097825292,(((sp|Q9LS46|ALMT9_ARATH:0.0076868960,tr|A0A654F8G0|A0A654F8G0_ARATH:0.0000022573)97:0.0038278121,tr|A0A5S9XDP8|A0A5S9XDP8_ARATH:0.0000026308)100:0.3671578755,(((((sp|Q9LPQ8|ALMT3_ARATH:0.0000022573,tr|A0A5S9V191|A0A5S9V191_ARATH:0.0000022573)84:0.0000022573,tr|A0A1P8AQE2|A0A1P8AQE2_ARATH:0.0000022573)82:0.0000023797,tr|A0A178W855|A0A178W855_ARATH:0.0000022573)97:0.0077698903,tr|A0A178W5R4|A0A178W5R4_ARATH:0.0936155336)96:0.0077143343,tr|A0A178W514|A0A178W514_ARATH:0.0441595929)100:0.4839462067)31:0.0775842929)51:0.1005204565)100:0.8351951868,(tr|V7CMQ3|V7CMQ3_PHAVU:0.0196936452,tr|A0A4D6LTH2|A0A4D6LTH2_VIGUN:0.1639765511)100:1.5326765667)100:0.4561735565,((((((((sp|Q9SJE9|ALMT1_ARATH:0.0000022573,tr|A0A654E8W9|A0A654E8W9_ARATH:0.0000022573)100:0.2271070460,(sp|Q9SJE8|ALMT2_ARATH:0.0143847500,tr|A0A178WNJ6|A0A178WNJ6_ARATH:0.0078120107)100:0.0668591429)100:0.1001278962,((sp|Q9XIN1|ALMT7_ARATH:0.0000022573,tr|A0A1P8B0R6|A0A1P8B0R6_ARATH:0.0000022573)64:0.0000022573,(tr|A0A178VW61|A0A178VW61_ARATH:0.0027033839,tr|A0A5S9X1U1|A0A5S9X1U1_ARATH:0.0027036675)96:0.0026943488)100:0.3277284971)100:0.5580664931,(((tr|A0A0R0HSN9|A0A0R0HSN9_SOYBN:0.0171760383,tr|I1LRL1|I1LRL1_SOYBN:0.0149097565)100:0.0519937025,(tr|A0A4D6LHF6|A0A4D6LHF6_VIGUN:0.0220912533,tr|V7AFV0|V7AFV0_PHAVU:0.0407250470)100:0.0455062547)100:0.1952382494,tr|A0A1S2YKN6|A0A1S2YKN6_CICAR:0.1971535906)100:0.3922258338)85:0.1325140984,(tr|A0A0R0H776|A0A0R0H776_SOYBN:0.2519408620,tr|A0A1S2XDN8|A0A1S2XDN8_CICAR:0.2433947306)100:0.5354773554)80:0.0828644372,(((tr|A0A0R0H755|A0A0R0H755_SOYBN:0.1212976842,(tr|A0A4D6N6Q9|A0A4D6N6Q9_VIGUN:0.2119861081,tr|V7BYA6|V7BYA6_PHAVU:0.0714523561)100:0.1082067663)100:0.1794074859,tr|A0A1S2XDN6|A0A1S2XDN6_CICAR:0.1890491316)100:0.5528302299,tr|Q071L5|Q071L5_PHAVU:1.7203394031)45:0.0949573787)59:0.0890810026,(((sp|Q9SRM9|ALMT8_ARATH:0.0000022573,(tr|A0A1I9LRV2|A0A1I9LRV2_ARATH:0.0000022573,tr|A0A654F692|A0A654F692_ARATH:0.0000022573)56:0.0000022573)92:0.0025401996,tr|A0A178V916|A0A178V916_ARATH:0.0000022573)100:0.6079156169,((((tr|I1JQ88|I1JQ88_SOYBN:0.0000022573,tr|B2LUQ7|B2LUQ7_SOYBN:0.0077230555)100:0.0359741948,tr|K7MZB8|K7MZB8_SOYBN:0.0559464252)100:0.0369692364,(tr|V7D0C7|V7D0C7_PHAVU:0.0529446107,tr|A0A4D6MAW5|A0A4D6MAW5_VIGUN:0.0677573484)100:0.0708047618)100:0.0895652105,tr|A0A1S2XUY8|A0A1S2XUY8_CICAR:0.1940898709)100:0.2906214392)100:0.1660208224)100:0.4285618805,((sp|O23086|ALMTA_ARATH:0.0000022573,tr|A0A178UU23|A0A178UU23_ARATH:0.0000022573)100:0.6939357467,((((tr|C6TGS0|C6TGS0_SOYBN:0.0202402507,tr|I1NIG7|I1NIG7_SOYBN:0.0000022573)100:0.0358274259,tr|A0A0R0HUN7|A0A0R0HUN7_SOYBN:0.0671544542)100:0.0400710744,(tr|V7CW15|V7CW15_PHAVU:0.0635108988,tr|A0A4D6N6W9|A0A4D6N6W9_VIGUN:0.0826534810)100:0.0531969746)100:0.1998059516,((tr|A0A3Q7XZ43|A0A3Q7XZ43_CICAR:0.0000025826,(tr|A0A1S2XWB1|A0A1S2XWB1_CICAR:0.0000022573,tr|A0A3Q7YF15|A0A3Q7YF15_CICAR:0.0000022573)100:0.1425000019)100:0.1253437211,tr|A0A1S2XW75|A0A1S2XW75_CICAR:0.0201878823)100:0.2119325934)100:0.3885120857)100:0.3998279133)100:0.4891902230)95:0.2039487241,((((tr|I1JFB2|I1JFB2_SOYBN:0.0095336365,(tr|I1JFB3|I1JFB3_SOYBN:0.0011848668,tr|C6T5R7|C6T5R7_SOYBN:0.0050571809)57:0.0027881526)88:0.0377513733,tr|A0A0R0HNH5|A0A0R0HNH5_SOYBN:0.1202374001)99:0.0967805384,(tr|A0A4D6LE49|A0A4D6LE49_VIGUN:0.0764453762,tr|V7BFH3|V7BFH3_PHAVU:0.0847574982)100:0.0752353962)100:0.2126364725,(((tr|V7CYE3|V7CYE3_PHAVU:0.1139760476,tr|A0A4D6MCX0|A0A4D6MCX0_VIGUN:0.1330366430)100:0.0798705618,(tr|A0A0R0EMZ0|A0A0R0EMZ0_SOYBN:0.0880866593,tr|A0A0R0ENZ7|A0A0R0ENZ7_SOYBN:0.0000021908)100:0.1261064086)100:0.1966331179,tr|A0A1S2XS55|A0A1S2XS55_CICAR:0.3160076698)99:0.1208906123)100:1.2538909170)100:0.5880836862,(((sp|O49696|ALMTC_ARATH:0.0019548570,((sp|Q3E9Z9|ALMTB_ARATH:0.0072377008,tr|A0A178UWN9|A0A178UWN9_ARATH:0.0000022573)100:0.5781758828,tr|A0A654FQD5|A0A654FQD5_ARATH:0.0000020955)89:0.0142475299)58:0.0040294900,tr|A0A5S9XTI0|A0A5S9XTI0_ARATH:0.0000028902)100:0.1867557415,((sp|Q9LS22|ALMTE_ARATH:0.0021183563,tr|A0A178UAL5|A0A178UAL5_ARATH:0.0000022573)100:0.1563591689,(((sp|Q9LS23|ALMTD_ARATH:0.0000022573,tr|A0A5S9YBK2|A0A5S9YBK2_ARATH:0.0000022573)100:0.0020643968,tr|A0A178UK00|A0A178UK00_ARATH:0.0044845739)99:0.0090003074,tr|A0A654G8G4|A0A654G8G4_ARATH:0.0042923191)100:0.2984913649)100:0.1239808455)100:0.1678570647)64:0.0873645517,((((tr|I1NF40|I1NF40_SOYBN:0.0484458217,(tr|V7BA27|V7BA27_PHAVU:0.0931216295,tr|A0A4D6N9A9|A0A4D6N9A9_VIGUN:0.1963102729)100:0.0719429476)99:0.0222834122,(((tr|I1NF39|I1NF39_SOYBN:0.0000022573,tr|A0A0R0ELE2|A0A0R0ELE2_SOYBN:0.0000022573)77:0.0000028942,tr|K7N2P7|K7N2P7_SOYBN:0.0000022573)100:0.0893268059,(tr|K7LM09|K7LM09_SOYBN:0.0150651428,(tr|K7LM10|K7LM10_SOYBN:0.0035587279,tr|K7LM12|K7LM12_SOYBN:0.0000022573)69:0.0021115785)100:0.1007189374)100:0.1112889290)100:0.0990634395,(tr|A0A3Q7XQT4|A0A3Q7XQT4_CICAR:0.0000022573,tr|A0A1S2Y1G4|A0A1S2Y1G4_CICAR:0.0000022573)100:0.2494361171)96:0.0660056032,((tr|A0A0R0I0N7|A0A0R0I0N7_SOYBN:0.0180957240,tr|I1NF41|I1NF41_SOYBN:0.0335376022)99:0.0265664924,(tr|A0A4D6N4N7|A0A4D6N4N7_VIGUN:0.0629352283,tr|V7BAA7|V7BAA7_PHAVU:0.0625174434)100:0.0735602326)100:0.2150966296)100:0.2796669225)100:0.1744181486,(((((tr|A0A0R0JU32|A0A0R0JU32_SOYBN:0.0000022573,tr|A0A0R0JTT9|A0A0R0JTT9_SOYBN:0.0032037749)86:0.0151345696,tr|I1K2K5|I1K2K5_SOYBN:0.0000029016)100:0.0519827509,tr|I1MVD9|I1MVD9_SOYBN:0.0460932452)100:0.1319562250,(tr|K7MLU1|K7MLU1_SOYBN:0.0193685186,(tr|K7MLU2|K7MLU2_SOYBN:0.0000022573,tr|I1MVD8|I1MVD8_SOYBN:0.0000028902)90:0.0000020566)100:0.2054882073)100:0.1305438461,tr|A0A1S3ECQ7|A0A1S3ECQ7_CICAR:0.2596163231)93:0.0398459910)100:0.0993931715,tr|A0A1S2YY34|A0A1S2YY34_CICAR:0.1502734649)99:0.0709346126,(tr|I1LH08|I1LH08_SOYBN:0.0244061177,tr|I1J9K0|I1J9K0_SOYBN:0.0181658288)78:0.0096869560)100:0.0351567864,tr|V7CH49|V7CH49_PHAVU:0.0172255623)100:0.0086272591,tr|A0A4D6LR70|A0A4D6LR70_VIGUN:0.0892975753);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t ALMT_tree.treefile -m "LG+G4{1.23463}" --length 1552
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s all_almt_aln.faa --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s all_almt_aln.faa --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Sun May 17 02:28:27 2026
+Total CPU time used: 1960.954265 seconds (0h:32m:40s)
+Total wall-clock time used: 504.14184 seconds (0h:8m:24s)
+
