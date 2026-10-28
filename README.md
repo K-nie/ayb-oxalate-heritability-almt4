@@ -29,7 +29,7 @@ give the exact command and parameters.
 ## Data
 
 - **Raw DArTseq genotypes** (order DAf18-2580, 105 accessions; post-QC 95 accessions x 1,625
-  markers at sample and marker call rate >= 0.90, MAF >= 0.05): Zenodo [10.5281/zenodo.20348832](https://doi.org/10.5281/zenodo.20348832).
+  markers at sample and marker call rate >= 0.90, MAF >= 0.05): Zenodo [10.5281/zenodo.22867224](https://doi.org/10.5281/zenodo.22867224).
 - **Reference genome**: *S. stenocarpa* chromosome-scale assembly, ENA [PRJEB57813](https://www.ebi.ac.uk/ena/browser/view/PRJEB57813)
   (Shorinola et al. 2024); Funannotate annotation at Zenodo [10.5281/zenodo.13853757](https://doi.org/10.5281/zenodo.13853757).
 - Phenotype data are held by the breeding program and available from the authors on
