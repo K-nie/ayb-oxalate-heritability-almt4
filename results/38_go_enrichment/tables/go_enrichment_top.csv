@@ -1,1 +1,7 @@
-GO_id,k_in_fg,K_in_bg,n_fg,N_bg,fold_enrichment,p_value,q_bh
+term,name,namespace,k_in_fg,K_in_bg,n_fg,N_bg,fold_enrichment,p_value,q_bh,q_bh_within_namespace
+GO:0016760,cellulose synthase (UDP-forming) activity,molecular_function,3,39,127,15788,9.562689279224713,0.0037606920367273815,0.11619232609858403,0.09518832868845538
+GO:0030247,polysaccharide binding,molecular_function,3,45,127,15788,8.28766404199475,0.005638524761814947,0.11619232609858403,0.09518832868845538
+GO:0004077,biotin--[biotin carboxyl-carrier protein] ligase activity,molecular_function,1,1,127,15788,124.31496062992125,0.008044084114517356,0.11619232609858403,0.09518832868845538
+GO:0004489,methylenetetrahydrofolate reductase [NAD(P)H] activity,molecular_function,1,1,127,15788,124.31496062992125,0.008044084114517356,0.11619232609858403,0.09518832868845538
+GO:0003964,RNA-directed DNA polymerase activity,molecular_function,1,1,127,15788,124.31496062992125,0.008044084114517356,0.11619232609858403,0.09518832868845538
+GO:0003721,obsolete telomerase RNA reverse transcriptase activity,molecular_function,1,1,127,15788,124.31496062992125,0.008044084114517356,0.11619232609858403,0.09518832868845538

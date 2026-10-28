@@ -1,0 +1,4 @@
+scenario,spearman_blueP_vs_blupP,top10_overlap
+nutritional,-0.084,1
+anti_nutritional,-0.089,1
+balanced,0.254,2

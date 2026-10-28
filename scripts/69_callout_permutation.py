@@ -381,11 +381,8 @@ def plot_enrichment_forest(results: pd.DataFrame, out_path: Path) -> None:
     ax.set_yticks(y)
     ax.set_yticklabels(results["trait"])
     ax.set_xlabel("Number of top-30 SNPs hitting >=1 keyword-matched gene within +/- 50 kb")
-    ax.set_title(
-        "Permutation null on candidate-gene callout enrichment\n"
-        f"observed (colour) vs null mean +/- 1.96 SD (grey) "
-        f"across {N_PERM} chromosome-stratified replicates"
-    )
+    # No baked title -- caption carries the descriptive title (observed vs
+    # null across the chromosome-stratified replicates) (no-title rule).
     ax.invert_yaxis()
     ax.set_xlim(left=-0.5)
     ax.legend(handles=[

@@ -222,10 +222,8 @@ ax.axvline(0, color="black", linewidth=0.7, zorder=2)
 ax.set_xlabel(r"Rank-biserial r (small cluster minus large cluster)",
               fontsize=11)
 ax.set_xlim(-1.20, 1.20)
-ax.set_title("Per-trait differentiation between marker-PCA clusters\n"
-             "(positive = trait elevated in the small PC1-outlier cluster; "
-             "* = BH-q < 0.10)",
-             fontsize=11)
+# No baked title -- caption carries it (no-title rule). The x-axis label
+# already states the sign convention; "* = BH-q < 0.10" goes in the caption.
 publishable_axes(ax, grid="x", grid_alpha=0.20)
 
 # Legend explaining colour
@@ -304,24 +302,20 @@ for ax, t in zip(axes.ravel(), TRAITS_ALL):
     if not row_match.empty:
         r0 = row_match.iloc[0]
         sig_mark = " *" if r0["q_bh"] < 0.10 else ""
-        ax.set_title(
-            f"{t.replace('_', ' ')}\n"
-            f"p = {r0['p_value']:.3f}; "
-            f"r$_b$ = {r0['rank_biserial_r']:+.2f}{sig_mark}",
-            fontsize=10, pad=6,
-        )
+        # Per-panel trait id + test stats as in-axes text, not a baked title.
+        ax.text(0.5, 0.98, f"{t.replace('_', ' ')}\n"
+                f"p = {r0['p_value']:.3f}; "
+                f"r$_b$ = {r0['rank_biserial_r']:+.2f}{sig_mark}",
+                transform=ax.transAxes, ha="center", va="top", fontsize=9)
     else:
-        ax.set_title(t.replace("_", " "), fontsize=10, pad=6)
+        ax.text(0.5, 0.98, t.replace("_", " "), transform=ax.transAxes,
+                ha="center", va="top", fontsize=9)
     publishable_axes(ax, grid="y", grid_alpha=0.20)
 
 for ax in axes.ravel()[len(TRAITS_ALL):]:
     ax.set_visible(False)
 
-fig.suptitle(
-    "Per-trait distributions split by marker-PCA cluster "
-    "(jittered points overlaid; * = BH-q < 0.10)",
-    y=1.005, fontsize=13,
-)
+# No suptitle -- caption carries the descriptive title (no-title rule).
 save(fig, "fig63_cluster_trait_boxplots")
 print("[fig] fig63_cluster_trait_boxplots")
 

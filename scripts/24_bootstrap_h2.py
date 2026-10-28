@@ -287,7 +287,9 @@ ax.set_xlabel(r"REML marker-based heritability h$^2$")
 ax.axvline(0, color="black", linewidth=0.5)
 ax.axvline(1, color="black", linewidth=0.5)
 ax.set_xlim(-0.05, 1.15)
-ax.set_title("REML h$^2$ MLE + 95 % profile-likelihood CI")
+# No baked title -- the descriptive title lives in the figure caption only
+# (Benjamin's no-title rule). The y-axis trait labels and x-axis already
+# tell the reader everything the old title repeated.
 ax.grid(True, axis="x")
 save(fig, "fig61_h2_profile_intervals")
 print("[fig] fig61_h2_profile_intervals")
@@ -312,15 +314,17 @@ for ax, trait in zip(axes.ravel(), TRAITS_ALL):
     ax.axvline(row["h2_mle"], color=color, linewidth=1.2)
     ax.set_xlabel(r"h$^2$")
     ax.set_ylabel(r"$-2\,\Delta \log L$")
-    ax.set_title(f"{trait}\nMLE = {row['h2_mle']:.2f}, "
-                 f"CI [{row['h2_ci95_low']:.2f}, {row['h2_ci95_high']:.2f}]",
-                 fontsize=8.5)
+    # Per-panel trait identifier as in-axes text, not a baked set_title --
+    # a small-multiples panel still needs to say which trait it is, but the
+    # no-title rule means that goes inside the axes, not as a title object.
+    ax.text(0.5, 0.97, f"{trait}\nMLE = {row['h2_mle']:.2f}, "
+            f"CI [{row['h2_ci95_low']:.2f}, {row['h2_ci95_high']:.2f}]",
+            transform=ax.transAxes, ha="center", va="top", fontsize=8.0)
     ax.set_ylim(0, max(8, sub["neg2_delta_logL"].max() + 0.5))
     ax.grid(True)
 for ax in axes.ravel()[len(TRAITS_ALL):]:
     ax.set_visible(False)
-fig.suptitle("REML profile-likelihood curves for h$^2$ (per trait)",
-             fontsize=12)
+# No fig.suptitle -- caption carries the descriptive title (no-title rule).
 save(fig, "fig62_h2_profile_curves")
 print("[fig] fig62_h2_profile_curves")
 

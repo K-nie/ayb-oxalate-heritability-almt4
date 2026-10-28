@@ -376,15 +376,16 @@ def qq_panel(traits, suptitle, fname):
         ax.fill_between(expected, lo, hi, color="grey", alpha=0.18,
                         linewidth=0)
         row = next(r for r in trait_stats if r["trait"] == trait)
-        ax.set_title(f"{trait}\nn = {row['n_used']}, "
-                     f"$\\lambda$$_{{GC}}$ = {row['lambda_GC']:.2f}",
-                     fontsize=10)
+        # Per-panel trait id + lambda_GC as in-axes text, not a baked title.
+        ax.text(0.03, 0.97, f"{trait}\nn = {row['n_used']}, "
+                f"$\\lambda$$_{{GC}}$ = {row['lambda_GC']:.2f}",
+                transform=ax.transAxes, ha="left", va="top", fontsize=9)
         ax.set_xlabel(r"Expected $-\log_{10}\,p$")
         ax.set_ylabel(r"Observed $-\log_{10}\,p$")
         ax.grid(True)
     for ax in axes.ravel()[len(traits):]:
         ax.set_visible(False)
-    fig.suptitle(suptitle, fontsize=12, y=1.02)
+    # No suptitle -- caption carries the descriptive title (no-title rule).
     save(fig, fname)
 
 
@@ -442,12 +443,13 @@ def manhattan_panel(traits, suptitle, fname):
         ax.set_xticklabels(chrs, rotation=0, fontsize=8)
         ax.set_ylabel(r"$-\log_{10}\,p$")
         row = next(r for r in trait_stats if r["trait"] == trait)
-        ax.set_title(f"{trait}   n = {row['n_used']}, "
-                     f"$\\lambda$$_{{GC}}$ = {row['lambda_GC']:.2f}",
-                     fontsize=10)
+        # Per-panel trait id + lambda_GC as in-axes text, not a baked title.
+        ax.text(0.99, 0.95, f"{trait}   n = {row['n_used']}, "
+                f"$\\lambda$$_{{GC}}$ = {row['lambda_GC']:.2f}",
+                transform=ax.transAxes, ha="right", va="top", fontsize=9)
         ax.legend(loc="upper right", fontsize=8)
         ax.grid(True, axis="y")
-    fig.suptitle(suptitle, fontsize=12, y=1.01)
+    # No suptitle -- caption carries the descriptive title (no-title rule).
     save(fig, fname)
 
 
@@ -603,11 +605,11 @@ ax.set_xticks(xpos)
 labels = [f"{r['trait']}\nn = {r['n_used']}" for _, r in pred_df.iterrows()]
 ax.set_xticklabels(labels, rotation=30, ha="right", fontsize=8)
 ax.set_ylabel("Predictive ability (Pearson r)")
-ax.set_title("GBLUP genomic prediction across the 9 new AYB traits "
-             "(per-rep distribution)")
+# No baked title -- the descriptive title lives in the figure caption only
+# (Benjamin's no-title rule). The legend already names the two distributions.
 for i, row in pred_df.iterrows():
-    sig = "*" if row["perm_p"] < 0.10 else ""
-    color = WONG["vermillion"] if row["perm_p"] < 0.10 else "black"
+    sig = "*" if row["perm_p"] < 0.05 else ""
+    color = WONG["vermillion"] if row["perm_p"] < 0.05 else "black"
     ax.text(xpos[i], max(row["mean_r"], row["perm_mean"]) + 0.05,
             f"p = {row['perm_p']:.2f}{sig}",
             ha="center", fontsize=8, color=color)

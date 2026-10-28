@@ -55,12 +55,21 @@ MIN_MAF = 0.05
 WIN_KB = 500
 WIN_BP = WIN_KB * 1_000
 
+# The ALMT4_2 candidate SNP. It carries MAF 0.085, which is BELOW the 0.10
+# MAF floor applied to the n=41 subset genome-wide scan, so it is NOT in the
+# Soluble_Oxalate scan table and must be drawn as a DIRECTED candidate overlaid
+# on the scan track -- not recovered as a scan hit. Its honest p is the
+# directed single-marker test (p = 0.0014; results/60), not the scan p.
+ALMT4_CANDIDATE_RS = "100033542|F|0-31:T>C-31:T>C"   # anchors Ss10:15,394,673
+
 TARGETS = [
-    # Soluble_Oxalate ALMT4 locus -- top AYB-anchored hit, p = 0.009, n = 41.
-    # Window expanded to +/- 500 kb to span the ALMT4 gene + neighbours.
+    # Soluble_Oxalate ALMT4 locus -- centred on the ALMT4_2 DIRECTED candidate
+    # SNP (Ss10:15,394,673, directed-test p = 0.0014), NOT the weaker in-scan
+    # window SNP. Window +/- 500 kb to span the ALMT4 gene + neighbours.
     {"trait": "Soluble_Oxalate", "chrom": "Ss10",
      "label": "ALMT4_locus",
-     "focal_rs": "100033542|F|0-31:T>C-31:T>C", "win_bp": 500_000},
+     "focal_rs": ALMT4_CANDIDATE_RS, "win_bp": 500_000,
+     "directed_candidate": True},
     # Ss04 DETOXIFICATION / MATE-family cluster — picked at the rank-26
     # Insoluble_Oxalate SNP that the AYB-anchored top-30 scan flagged for
     # four tandem DETOX-family genes (cowpea ortholog of Vigun04g028900-
@@ -184,9 +193,40 @@ print(f"[gff] {len(all_genes)} genes total, "
 
 
 # ---------------------------------------------------------------------------
+# Directed-candidate lookup: the ALMT4_2 candidate's honest p is the directed
+# single-marker test from the candidate-gene pleiotropy scan (results/60), and
+# its position comes from the re-anchoring table -- both read here so every
+# number is traceable to a result file rather than hard-coded.
+# ---------------------------------------------------------------------------
+_PLEIO = pd.read_csv(ROOT / "results" / "60_almt4_pleiotropy_scan" /
+                     "tables" / "almt4_per_trait_effects.csv")
+
+
+def directed_candidate_pos_p(rs, trait):
+    """Return (anchored_pos, directed_test_p) for a directed candidate SNP."""
+    anc_row = anc_ok[anc_ok["rs"] == rs]
+    pos = int(anc_row.iloc[0]["snp_pos_ayb"])
+    p = float(_PLEIO.loc[_PLEIO["trait"] == trait, "wald_p"].iloc[0])
+    return pos, p
+
+
+# ---------------------------------------------------------------------------
 # Per-target zoom
 # ---------------------------------------------------------------------------
-def pick_focal(trait, chrom, focal_rs=None):
+def pick_focal(trait, chrom, focal_rs=None, directed_pos=None, directed_p=None):
+    # Directed candidate: centre on its anchored position and report its
+    # directed-test p. It is intentionally NOT required to be in the scan
+    # table (it falls below the n=41 scan's 0.10 MAF floor), so we skip the
+    # scan-based pick / fallback entirely and keep the honest directed values.
+    if directed_pos is not None and directed_p is not None:
+        gp = (GWAS_BIOCHEM_DIR if trait in ("Tannin", "Phenol", "Flavonoid",
+                                            "Antioxidant")
+              else GWAS_NEW_DIR) / f"gwas_{trait}_M1_K.csv"
+        g_ = pd.read_csv(gp)
+        g_ = g_.drop(columns=[c for c in ("chrom", "pos") if c in g_.columns])
+        g_ = g_.merge(anc_ok[["rs", "chr_ayb", "snp_pos_ayb"]], on="rs",
+                      how="left")
+        return g_, str(focal_rs), int(directed_pos), float(directed_p)
     if trait in ("Tannin", "Phenol", "Flavonoid", "Antioxidant"):
         gp = GWAS_BIOCHEM_DIR / f"gwas_{trait}_M1_K.csv"
     else:
@@ -226,10 +266,17 @@ def pick_focal(trait, chrom, focal_rs=None):
 for target in TARGETS:
     trait = target["trait"]; chrom = target["chrom"]; label = target["label"]
     focal_rs_req = target.get("focal_rs")
+    is_directed = bool(target.get("directed_candidate", False))
     win_bp = int(target.get("win_bp", WIN_BP))
     win_kb = win_bp // 1000
     print(f"\n========== {label}: {trait} on {chrom} (+/- {win_kb} kb) ==========")
-    picked = pick_focal(trait, chrom, focal_rs=focal_rs_req)
+    directed_pos = directed_p = None
+    if is_directed:
+        directed_pos, directed_p = directed_candidate_pos_p(focal_rs_req, trait)
+        print(f"  [directed] candidate {focal_rs_req} at {chrom}:{directed_pos:,} "
+              f"directed-test p = {directed_p:.4f} (below n=41 scan MAF floor)")
+    picked = pick_focal(trait, chrom, focal_rs=focal_rs_req,
+                        directed_pos=directed_pos, directed_p=directed_p)
     if picked is None:
         print(f"  no anchored SNPs; skip"); continue
     g, focal_rs, focal_pos, focal_p = picked
@@ -280,31 +327,71 @@ for target in TARGETS:
     positions = win_snps["snp_pos_ayb"].values
     p_vals = g.set_index("rs").loc[win_snps["rs"], "p"].values
     nlp = -np.log10(p_vals)
-    focal_idx = int(np.where(win_snps["rs"].values == focal_rs)[0][0])
+    # Genome-wide-scan markers in the window (the scan track). For a directed
+    # candidate the candidate is NOT among these (it is below the scan MAF
+    # floor), so all scan points stay grey and the candidate is overlaid
+    # separately as a distinct star.
+    in_scan = np.where(win_snps["rs"].values == focal_rs)[0]
     colors = ["#7c7c7c"] * len(win_snps)
-    colors[focal_idx] = WONG["vermillion"]
+    if not is_directed and len(in_scan):
+        colors[int(in_scan[0])] = WONG["vermillion"]
     ax_top.scatter(positions / 1e6, nlp, s=22, color=colors,
                    edgecolor="black", linewidth=0.3, zorder=3)
-    # Pin the focal-SNP label to the top-left corner of the panel so it
-    # never collides with the legend or the title text. Arrow points to the
-    # actual focal SNP location.
-    ax_top.annotate(f"focal SNP\n{focal_rs}\np = {focal_p:.4f}",
-                    xy=(focal_pos / 1e6, nlp[focal_idx]),
-                    xytext=(0.02, 0.92), textcoords="axes fraction",
-                    ha="left", va="top", fontsize=7.5,
-                    color=WONG["vermillion"],
-                    arrowprops=dict(arrowstyle="-",
-                                    color=WONG["vermillion"], lw=0.6,
-                                    alpha=0.85,
-                                    connectionstyle="arc3,rad=-0.05"))
+
+    if is_directed:
+        # Overlay the ALMT4_2 DIRECTED candidate as a distinct star at its
+        # directed-test p. The marker style (star) + annotation make clear it
+        # is a below-scan-floor directed candidate, NOT a recovered scan hit.
+        cand_nlp = -np.log10(focal_p)
+        ax_top.scatter([focal_pos / 1e6], [cand_nlp], s=190, marker="*",
+                       color=WONG["vermillion"], edgecolor="black",
+                       linewidth=0.7, zorder=6)
+        ax_top.annotate(
+            f"ALMT4_2 directed candidate\n{chrom}:{focal_pos:,}\n"
+            f"directed-test p = {focal_p:.4f}\n"
+            f"(MAF 0.085, below the genome-wide-scan MAF floor;\n"
+            f"shown as a directed candidate, not a scan hit)",
+            xy=(focal_pos / 1e6, cand_nlp),
+            xytext=(0.985, 0.95), textcoords="axes fraction",
+            ha="right", va="top", fontsize=7.0, color=WONG["vermillion"],
+            arrowprops=dict(arrowstyle="-", color=WONG["vermillion"], lw=0.7,
+                            alpha=0.9, connectionstyle="arc3,rad=0.05"))
+        ax_top.set_ylim(0, max(cand_nlp, nlp.max() if len(nlp) else 0) * 1.18)
+    else:
+        # Pin the focal-SNP label to the top-left corner of the panel so it
+        # never collides with the legend or the title text. Arrow points to
+        # the actual focal SNP location.
+        focal_idx = int(in_scan[0])
+        ax_top.annotate(f"focal SNP\n{focal_rs}\np = {focal_p:.4f}",
+                        xy=(focal_pos / 1e6, nlp[focal_idx]),
+                        xytext=(0.02, 0.92), textcoords="axes fraction",
+                        ha="left", va="top", fontsize=7.5,
+                        color=WONG["vermillion"],
+                        arrowprops=dict(arrowstyle="-",
+                                        color=WONG["vermillion"], lw=0.6,
+                                        alpha=0.85,
+                                        connectionstyle="arc3,rad=-0.05"))
     ax_top.set_ylabel(r"$-\log_{10}\,p$" "\n" f"({trait})")
     ax_top.set_xlim((focal_pos - win_bp) / 1e6,
                     (focal_pos + win_bp) / 1e6)
     ax_top.set_xticklabels([])
     ax_top.grid(True, axis="y", alpha=0.4)
-    ax_top.set_title(f"{label}: {trait} on {chrom} — "
-                     f"+/- {win_kb} kb around focal "
-                     f"({chrom}:{focal_pos:,}, p = {focal_p:.4f})")
+    # Locus identity as an in-axes annotation (top-left), not a baked title
+    # (no-title rule). This keeps the standalone zoom self-identifying -- which
+    # trait, chromosome and focal position -- while the descriptive sentence
+    # moves to the caption. For the directed-candidate panel the same text
+    # also carries the marker key (grey = scan markers; star = candidate).
+    if is_directed:
+        ax_top.text(0.01, 0.97,
+                    f"{trait}  —  ALMT4_2 candidate {chrom}:{focal_pos:,}\n"
+                    f"grey = genome-wide-scan markers;  "
+                    f"star = directed candidate",
+                    transform=ax_top.transAxes, ha="left", va="top",
+                    fontsize=7.6, fontweight="bold")
+    else:
+        ax_top.text(0.01, 0.97, f"{trait}  {chrom}:{focal_pos:,}",
+                    transform=ax_top.transAxes, ha="left", va="top",
+                    fontsize=8.5, fontweight="bold")
 
     ax_mid = fig.add_subplot(gs[1, 0])
     for _, gd in win_genes.iterrows():

@@ -18,9 +18,9 @@ Per-trait results, sorted by Wald p ascending:
 
 | Trait | n | β (BLUP scale) | SE | Wald p | Holm p | h² MLE | Standardised β |
 |---|---|---|---|---|---|---|---|
-| **Soluble_Oxalate** | 41 | **+98.65** | 30.85 | **0.0014** | **0.018** | 0.47 | **+1.04** |
+| **Soluble_Oxalate** | 41 | **+98.65** | 30.85 | **0.0014** | **0.018** | 0.47 | **+1.07** |
 | Phenol | 93 | +68.87 | 32.41 | 0.034 | 0.40 | 0.001 | +0.55 |
-| Insoluble_Oxalate | 41 | **−142.55** | 84.33 | **0.091** | 1.00 | 0.001 | **−0.63** |
+| Insoluble_Oxalate | 41 | **−142.55** | 84.33 | **0.091** | 1.00 | 0.001 | **−0.59** |
 | Flavonoid | 93 | +16.52 | 9.98 | 0.098 | 1.00 | 0.001 | +0.43 |
 | Seed_Coat_Tannin | 95 | +72.10 | 55.07 | 0.190 | 1.00 | 0.001 | +0.35 |
 | Antioxidant | 93 | +32.77 | 25.38 | 0.197 | 1.00 | 0.37 | +0.39 |
@@ -34,9 +34,9 @@ Per-trait results, sorted by Wald p ascending:
 
 **Three operational takeaways.**
 
-1. **Soluble_Oxalate is the only Holm-significant trait** (Holm p = 0.018). The standardised β = +1.04 trait-SD per alt-allele dose is the largest effect across the 13 traits.
+1. **Soluble_Oxalate is the only Holm-significant trait** (Holm p = 0.018). The standardised β = +1.07 trait-SD per alt-allele dose is the largest effect across the 13 traits.
 
-2. **Insoluble_Oxalate carries the predicted opposite-direction effect** (β = −142.55, raw p = 0.091, standardised β = −0.63). The Soluble × Insoluble antagonism documented as a phenotypic correlation (r = −0.38, §3.6 of A2 draft) is anchored at the molecular level: a single SNP near ALMT4 raises soluble oxalate and lowers insoluble oxalate. The Holm-uncorrected raw p sits just above 0.05; reviewers will read the direction-and-magnitude pattern alongside the headline Soluble_Oxalate result.
+2. **Insoluble_Oxalate carries the predicted opposite-direction effect** (β = −142.55, raw p = 0.091, standardised β = −0.59). The Soluble × Insoluble antagonism documented as a phenotypic correlation (r = −0.38, §3.6 of A2 draft) is anchored at the molecular level: a single SNP near ALMT4 raises soluble oxalate and lowers insoluble oxalate. The Holm-uncorrected raw p sits just above 0.05; reviewers will read the direction-and-magnitude pattern alongside the headline Soluble_Oxalate result.
 
 3. **Total_Oxalate is null** (β = −43.08, p = 0.61, standardised β = −0.16). ALMT4 does not change the total oxalate load; it partitions the fraction. This is the breeder-relevant finding: selection on the ALMT4 alt-allele shifts Soluble → Insoluble without dropping total, exactly matching the "low Soluble + high Insoluble" breeder strategy described in §4.3 of the original Paper A draft.
 

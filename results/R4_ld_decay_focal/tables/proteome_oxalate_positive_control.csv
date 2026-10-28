@@ -1,0 +1,10 @@
+method,query,n_hits_evalue<1e-5,best_hit,best_evalue,best_pident
+blastp,AAE3_oxalyl_CoA_synthetase (Q9SMT7),47,AYBTSS11_015480-T1,0.0,76.070
+blastp,oxalate_oxidase_germin (P15290),27,AYBTSS11_002440-T1,2.52e-62,50.249
+blastp,oxalate_decarboxylase (O34714),0,AYBTSS11_016510-T1,5.75e-05,28.814
+hmmsearch --cut_ga,PF00190 Cupin_1 (germin/oxalate oxidase),37,AYBTSS11_029336-T1,,
+hmmsearch --cut_ga,PF07883 Cupin_2 (oxalate decarboxylase),32,AYBTSS11_029336-T1,,
+hmmsearch --cut_ga,PF00501 AMP-binding (AAE3),53,AYBTSS11_003982-T1,,
+hmmsearch --cut_ga,PF13193 AMP-binding_C (AAE3),32,AYBTSS11_022795-T1,,
+hmmsearch --cut_ga,PF01554 MatE (MATE),61,AYBTSS11_029246-T1,,
+hmmsearch --cut_ga,PF11744 ALMT (positive control),15,AYBTSS11_015003-T1,,ALMT4_2 recovered

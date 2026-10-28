@@ -399,7 +399,13 @@ ax.set_xticks(x)
 ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=8.0)
 plt.setp(ax.get_xticklabels(), rotation_mode="anchor")
 ax.set_ylabel("Predictive ability (Pearson r)")
-ax.set_title("(A) ST vs MT predictive ability per trait")
+# Lowercase bold panel letter only, no descriptive title (no-title rule).
+# NOTE: this multi-trait (MT) vs single-trait (ST) delta-r figure is
+# EXPLORATORY / supplementary in the A2 revision -- the trait-assisted MT
+# "gain" claim was retracted (no gain stable across CV schemes at n = 41),
+# so this must not be used as a main-text prediction-benefit figure.
+ax.text(-0.08, 1.02, "a", transform=ax.transAxes, fontsize=12,
+        fontweight="bold", va="bottom", ha="right")
 ax.legend(framealpha=0.9, edgecolor="none")
 ax.grid(True, axis="y", alpha=0.25)
 
@@ -427,7 +433,8 @@ ax.set_yticklabels([f"{r['trait'].replace('_', ' ')}\n{r['group']}"
                      for _, r in df.iterrows()],
                     fontsize=8.5)
 ax.set_xlabel(r"$\Delta r$ (MT $-$ ST)  with 95 % paired-bootstrap CI")
-ax.set_title("(B) Paired-bootstrap CI on the MT minus ST predictive-ability gain")
+ax.text(-0.08, 1.02, "b", transform=ax.transAxes, fontsize=12,
+        fontweight="bold", va="bottom", ha="right")
 ax.grid(True, axis="x", alpha=0.25)
 
 save(fig, "fig66_mt_vs_st_gblup")

@@ -1,0 +1,63 @@
+gene_id,name,feature_type,product,pfam_domains,oxalate_enzyme_domain,blast_best_oxalate_enzyme,blast_best_evalue,blast_verdict,distance_from_focal_kb,in_half_decay_99kb,is_candidate
+AYBTSS11_029725,Spste.TSs11.10G297250.1,mRNA,hypothetical protein,PF00067,,oxalate_decarboxylase,1.2,no significant oxalate hit,0.0,True,False
+AYBTSS11_029726,ALMT4_2,mRNA,Aluminum-activated malate transporter 4,"PF11744,PF13515",PF11744:ALMT,oxalate_decarboxylase,17.0,no significant oxalate hit,3.2,True,True
+AYBTSS11_029727,Spste.TSs11.10G297270.1,mRNA,hypothetical protein,"PF13646,PF02985",,AAE3_oxalyl_CoA_synthetase,0.21,no significant oxalate hit,8.6,True,False
+AYBTSS11_029724,Spste.TSs11.10G297240.1,mRNA,hypothetical protein,,,oxalate_decarboxylase,3.9,no significant oxalate hit,15.3,True,False
+AYBTSS11_029728,Spste.TSs11.10G297280.1,mRNA,hypothetical protein,PF07859,,AAE3_oxalyl_CoA_synthetase,0.15,no significant oxalate hit,18.0,True,False
+AYBTSS11_029723,Spste.TSs11.10G297230.1,mRNA,hypothetical protein,,,AAE3_oxalyl_CoA_synthetase,1.7,no significant oxalate hit,20.3,True,False
+AYBTSS11_029729,Spste.TSs11.10G297290.1,mRNA,hypothetical protein,,,oxalate_decarboxylase,0.61,no significant oxalate hit,24.5,True,False
+AYBTSS11_029730,Spste.TSs11.10G297300.1,mRNA,hypothetical protein,"PF00170,PF07716,PF14144",,oxalate_oxidase_germin,0.18,no significant oxalate hit,25.6,True,False
+AYBTSS11_029722,LTA2,mRNA,Lta2p,"PF02817,PF00198,PF00364",,AAE3_oxalyl_CoA_synthetase,3.5,no significant oxalate hit,30.9,True,False
+AYBTSS11_029731,Spste.TSs11.10G297310.1,mRNA,hypothetical protein,PF04515,,oxalate_decarboxylase,2.6,no significant oxalate hit,34.0,True,False
+AYBTSS11_029721,Spste.TSs11.10G297210.1,mRNA,hypothetical protein,PF08718,,AAE3_oxalyl_CoA_synthetase,0.66,no significant oxalate hit,36.5,True,False
+AYBTSS11_029720,Spste.TSs11.10G297200.1,mRNA,hypothetical protein,,,AAE3_oxalyl_CoA_synthetase,4.4,no significant oxalate hit,44.6,True,False
+AYBTSS11_029732,Spste.TSs11.10G297320.1,mRNA,hypothetical protein,PF01169,,AAE3_oxalyl_CoA_synthetase,1.7,no significant oxalate hit,63.1,True,False
+AYBTSS11_029733,SPD1,mRNA,ribonucleotide reductase (RNR) inhibitor,"PF00004,PF19568",,oxalate_oxidase_germin,1.1,no significant oxalate hit,69.3,True,False
+AYBTSS11_029719,RAD23C,mRNA,Ubiquitin receptor RAD23c,"PF09280,PF00627,PF00240,PF11976",,AAE3_oxalyl_CoA_synthetase,0.19,no significant oxalate hit,70.1,True,False
+AYBTSS11_029734,Spste.TSs11.10G297340.1,mRNA,hypothetical protein,"PF16367,PF00076,PF00098",,AAE3_oxalyl_CoA_synthetase,1.5,no significant oxalate hit,75.6,True,False
+AYBTSS11_029735,Spste.TSs11.10G297350.1,mRNA,hypothetical protein,PF06813,,AAE3_oxalyl_CoA_synthetase,0.28,no significant oxalate hit,94.1,True,False
+AYBTSS11_029718,Spste.TSs11.10G297180.1,mRNA,hypothetical protein,,,oxalate_oxidase_germin,3.1,no significant oxalate hit,104.7,False,False
+AYBTSS11_029736,Spste.TSs11.10G297360.1,mRNA,hypothetical protein,PF06813,,AAE3_oxalyl_CoA_synthetase,1.5,no significant oxalate hit,106.8,False,False
+AYBTSS11_029737,Spste.TSs11.10G297370.1,mRNA,hypothetical protein,PF06813,,AAE3_oxalyl_CoA_synthetase,0.62,no significant oxalate hit,112.5,False,False
+AYBTSS11_029717,Spste.TSs11.10G297170.1,mRNA,hypothetical protein,,,AAE3_oxalyl_CoA_synthetase,2.9,no significant oxalate hit,131.6,False,False
+AYBTSS11_029716,Spste.TSs11.10G297160.1,mRNA,hypothetical protein,,,oxalate_decarboxylase,2.3,no significant oxalate hit,132.1,False,False
+AYBTSS11_029738,Spste.TSs11.10G297380.1,mRNA,hypothetical protein,PF03439,,oxalate_decarboxylase,0.61,no significant oxalate hit,136.2,False,False
+AYBTSS11_029715,XYL1_3,mRNA,NAD(P)H-dependent D-xylose reductase (XR),"PF01055,PF16863,PF13802",,oxalate_oxidase_germin,3.9,no significant oxalate hit,138.0,False,False
+AYBTSS11_029739,Spste.TSs11.10G297390.1,mRNA,hypothetical protein,PF01603,,oxalate_oxidase_germin,0.54,no significant oxalate hit,146.1,False,False
+AYBTSS11_029740,Spste.TSs11.10G297400.1,mRNA,hypothetical protein,PF00544,,oxalate_decarboxylase,0.29,no significant oxalate hit,154.5,False,False
+AYBTSS11_029714,Spste.TSs11.10G297140.1,mRNA,hypothetical protein,,,AAE3_oxalyl_CoA_synthetase,6.1,no significant oxalate hit,156.9,False,False
+AYBTSS11_029713,Spste.TSs11.10G297130.1,mRNA,hypothetical protein,PF00847,,oxalate_decarboxylase,0.9,no significant oxalate hit,161.1,False,False
+AYBTSS11_029741,Spste.TSs11.10G297410.1,mRNA,hypothetical protein,PF04844,,oxalate_decarboxylase,0.005,no significant oxalate hit,185.0,False,False
+AYBTSS11_029712,CUT1_3,mRNA,separase/separin,"PF08392,PF08541",,AAE3_oxalyl_CoA_synthetase,1.0,no significant oxalate hit,210.2,False,False
+AYBTSS11_029742,Spste.TSs11.10G297420.1,mRNA,hypothetical protein,,,oxalate_decarboxylase,1.8,no significant oxalate hit,213.8,False,False
+AYBTSS11_029743,Spste.TSs11.10G297430.1,mRNA,hypothetical protein,PF03941,,oxalate_decarboxylase,1.8,no significant oxalate hit,219.0,False,False
+AYBTSS11_029744,Spste.TSs11.10G297440.1,mRNA,hypothetical protein,"PF01535,PF20430,PF12854,PF13041,PF14432,PF13812,PF20431",,AAE3_oxalyl_CoA_synthetase,1.4,no significant oxalate hit,228.2,False,False
+AYBTSS11_029745,CAT7,mRNA,"Cationic amino acid transporter 7, chloroplastic","PF00324,PF13906,PF13520",,AAE3_oxalyl_CoA_synthetase,2.5,no significant oxalate hit,239.2,False,False
+AYBTSS11_029711,Spste.TSs11.10G297110.1,mRNA,hypothetical protein,"PF00643,PF06203",,oxalate_decarboxylase,9.1,no significant oxalate hit,254.9,False,False
+AYBTSS11_029710,LBD40,mRNA,LOB domain-containing protein 40,PF03195,,oxalate_decarboxylase,2.3,no significant oxalate hit,260.6,False,False
+AYBTSS11_029746,Spste.TSs11.10G297460.1,mRNA,hypothetical protein,PF00249,,AAE3_oxalyl_CoA_synthetase,2.0,no significant oxalate hit,266.6,False,False
+AYBTSS11_029709,Spste.TSs11.10G297090.1,mRNA,hypothetical protein,,,AAE3_oxalyl_CoA_synthetase,5.4,no significant oxalate hit,267.9,False,False
+AYBTSS11_029708,Spste.TSs11.10G297080.1,tRNA,tRNA-Cys,,,,,non-coding (no protein),269.8,False,False
+AYBTSS11_029747,Spste.TSs11.10G297470.1,mRNA,hypothetical protein,,,oxalate_decarboxylase,9.5,no significant oxalate hit,270.4,False,False
+AYBTSS11_029707,Spste.TSs11.10G297070.1,mRNA,hypothetical protein,,,AAE3_oxalyl_CoA_synthetase,55.0,no significant oxalate hit,274.4,False,False
+AYBTSS11_029748,Spste.TSs11.10G297480.1,mRNA,hypothetical protein,"PF00957,PF13774,PF00487",,oxalate_decarboxylase,0.003,no significant oxalate hit,279.0,False,False
+AYBTSS11_029706,Spste.TSs11.10G297060.1,mRNA,hypothetical protein,,,AAE3_oxalyl_CoA_synthetase,1.2,no significant oxalate hit,279.7,False,False
+AYBTSS11_029749,Spste.TSs11.10G297490.1,mRNA,hypothetical protein,PF00928,,oxalate_decarboxylase,1.5,no significant oxalate hit,286.4,False,False
+AYBTSS11_029705,Spste.TSs11.10G297050.1,mRNA,hypothetical protein,,,oxalate_decarboxylase,0.32,no significant oxalate hit,288.6,False,False
+AYBTSS11_029704,Spste.TSs11.10G297040.1,mRNA,hypothetical protein,,,AAE3_oxalyl_CoA_synthetase,5.4,no significant oxalate hit,295.1,False,False
+AYBTSS11_029750,Spste.TSs11.10G297500.1,mRNA,hypothetical protein,PF01814,,AAE3_oxalyl_CoA_synthetase,1.1,no significant oxalate hit,296.0,False,False
+AYBTSS11_029751,Spste.TSs11.10G297510.1,mRNA,hypothetical protein,PF02362,,AAE3_oxalyl_CoA_synthetase,0.13,no significant oxalate hit,300.0,False,False
+AYBTSS11_029703,Spste.TSs11.10G297030.1,mRNA,hypothetical protein,PF03195,,oxalate_decarboxylase,0.75,no significant oxalate hit,301.9,False,False
+AYBTSS11_029702,Spste.TSs11.10G297020.1,mRNA,hypothetical protein,"PF00643,PF06203",,oxalate_oxidase_germin,3.0,no significant oxalate hit,304.8,False,False
+AYBTSS11_029752,Spste.TSs11.10G297520.1,mRNA,hypothetical protein,PF01351,,oxalate_decarboxylase,3.2,no significant oxalate hit,307.5,False,False
+AYBTSS11_029753,Spste.TSs11.10G297530.1,mRNA,hypothetical protein,,,oxalate_oxidase_germin,1.3,no significant oxalate hit,314.5,False,False
+AYBTSS11_029754,Spste.TSs11.10G297540.1,mRNA,hypothetical protein,PF08661,,AAE3_oxalyl_CoA_synthetase,5.5,no significant oxalate hit,319.4,False,False
+AYBTSS11_029755,FDX3_1,mRNA,"Ferredoxin-3, chloroplastic",PF00111,,AAE3_oxalyl_CoA_synthetase,0.068,no significant oxalate hit,325.2,False,False
+AYBTSS11_029756,Spste.TSs11.10G297560.1,mRNA,hypothetical protein,PF00782,,oxalate_decarboxylase,8.9,no significant oxalate hit,329.4,False,False
+AYBTSS11_029701,CUT1_2,mRNA,separase/separin,"PF08392,PF08541",,AAE3_oxalyl_CoA_synthetase,1.0,no significant oxalate hit,334.6,False,False
+AYBTSS11_029757,Spste.TSs11.10G297570.1,mRNA,hypothetical protein,PF12612,,oxalate_decarboxylase,1.2,no significant oxalate hit,348.5,False,False
+AYBTSS11_029758,Spste.TSs11.10G297580.1,mRNA,hypothetical protein,PF04819,,oxalate_decarboxylase,4.1,no significant oxalate hit,364.9,False,False
+AYBTSS11_029759,ACR12,mRNA,ACT domain-containing protein acr12,,,AAE3_oxalyl_CoA_synthetase,0.22,no significant oxalate hit,366.8,False,False
+AYBTSS11_029700,RPL15_2,mRNA,60S ribosomal protein L15,PF00828,,AAE3_oxalyl_CoA_synthetase,0.93,no significant oxalate hit,369.8,False,False
+AYBTSS11_029699,Spste.TSs11.10G296990.1,mRNA,hypothetical protein,,,oxalate_oxidase_germin,0.67,no significant oxalate hit,373.3,False,False
+AYBTSS11_029760,Spste.TSs11.10G297600.1,mRNA,hypothetical protein,,,oxalate_oxidase_germin,11.0,no significant oxalate hit,389.4,False,False

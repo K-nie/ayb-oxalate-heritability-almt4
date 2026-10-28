@@ -117,17 +117,23 @@ for r, (title, traits) in enumerate(groups):
                 edgecolor="white", linewidth=0.4)
         sw_row = summary[summary["trait"] == t].iloc[0]
         sig = "*" if sw_row["shapiro_p"] < 0.05 else ""
-        ax.set_title(f"{t}\nn = {int(sw_row['n'])}, "
-                     f"SW p = {sw_row['shapiro_p']:.2g}{sig}",
-                     fontsize=9)
+        # Per-panel trait id + Shapiro-Wilk p as in-axes text, not a baked
+        # title (no-title rule). Pinned to the top-right corner with a white
+        # backing box so it never overlaps the histogram bars (which peak
+        # near the centre/left); right-skewed and centred distributions both
+        # leave the top-right clear.
+        ax.text(0.97, 0.96, f"{t}\nn = {int(sw_row['n'])}, "
+                f"SW p = {sw_row['shapiro_p']:.2g}{sig}",
+                transform=ax.transAxes, ha="right", va="top", fontsize=7.6,
+                bbox=dict(boxstyle="round,pad=0.25", facecolor="white",
+                          alpha=0.85, edgecolor="none"))
         ax.set_xlabel(t)
         ax.set_ylabel("count")
         ax.grid(True, axis="y")
     axes[r, 0].annotate(title, xy=(-0.32, 0.5), xycoords="axes fraction",
                         rotation=90, ha="center", va="center",
                         fontsize=10, fontweight="bold")
-fig.suptitle("Phenotype distributions across the three data sources",
-             fontsize=12, y=1.02)
+# No suptitle -- caption carries the descriptive title (no-title rule).
 save(fig, "fig34_phenotype_distributions_13")
 
 
@@ -183,7 +189,10 @@ def heatmap(mat, n_mat, title, fname):
             ax.text(j, i, f"{r:.2f}", ha="center", va="center",
                     color=txt, fontsize=7)
     fig.colorbar(im, ax=ax, shrink=0.7, label="correlation")
-    ax.set_title(title, fontsize=12)
+    # Method label (Pearson / Spearman) as a small in-axes annotation so the
+    # standalone file stays self-identifying, not a baked title (no-title rule).
+    ax.text(0.0, 1.02, title, transform=ax.transAxes, ha="left", va="bottom",
+            fontsize=9, fontweight="bold")
     save(fig, fname)
 
 
@@ -206,10 +215,10 @@ ax.scatter(both["Tannin"], both["Seed_Coat_Tannin"], s=30,
            color=WONG["blue"], edgecolor="black", linewidth=0.4, alpha=0.85)
 ax.set_xlabel("bulk Tannin (Wet Chemistry)")
 ax.set_ylabel("Seed Coat Tannin (Seed Metrics)")
-ax.set_title(f"Do the two tannin assays agree?\n"
-             f"Pearson r = {r_p.statistic:.2f} (p = {r_p.pvalue:.2g}), "
-             f"Spearman rho = {r_s.correlation:.2f}, "
-             f"n = {len(both)}")
+# Correlation stats as an in-axes annotation, not a baked title (no-title rule).
+ax.text(0.03, 0.97, f"Pearson r = {r_p.statistic:.2f} (p = {r_p.pvalue:.2g})\n"
+        f"Spearman rho = {r_s.correlation:.2f},  n = {len(both)}",
+        transform=ax.transAxes, ha="left", va="top", fontsize=9)
 ax.grid(True)
 save(fig, "fig37_seed_coat_vs_bulk_tannin")
 print(f"[fig] fig37_seed_coat_vs_bulk_tannin "
@@ -232,11 +241,12 @@ for ax, t in zip(axes, ["Total_Oxalate", "Soluble_Oxalate", "Insoluble_Oxalate"]
                alpha=0.85)
     ax.set_xlabel("Crude Protein (%)")
     ax.set_ylabel(t)
-    ax.set_title(f"{t}\nr = {rp.statistic:.2f} (p = {rp.pvalue:.2g}), n = {len(s)}",
-                 fontsize=10)
+    # Per-panel trait id + correlation as in-axes text, not a baked title.
+    ax.text(0.5, 0.97, f"{t}\nr = {rp.statistic:.2f} "
+            f"(p = {rp.pvalue:.2g}), n = {len(s)}",
+            transform=ax.transAxes, ha="center", va="top", fontsize=9)
     ax.grid(True)
-fig.suptitle("Crude protein vs oxalate fractions (n = 46 subset)",
-             y=1.04, fontsize=12)
+# No suptitle -- caption carries the descriptive title (no-title rule).
 save(fig, "fig38_protein_vs_oxalate")
 print("[fig] fig38_protein_vs_oxalate")
 

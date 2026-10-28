@@ -105,9 +105,10 @@ for axi, (col_pip, label, axes_color) in enumerate([
     ax.set_xticks(mids)
     ax.set_xticklabels(CHR_ORDER, fontsize=8)
     ax.set_ylabel(f"{label} PIP")
-    ax.set_title(f"({chr(ord('A') + axi)}) {label} posterior inclusion "
-                  f"probability per SNP — {HEADLINE_TRAIT.replace('_', ' ')}",
-                  fontsize=10, loc="left")
+    # Lowercase bold panel letter only; the y-axis label already names the
+    # method (BayesB / BayesCpi) and trait context (no-title rule).
+    ax.text(-0.04, 1.02, chr(ord("a") + axi), transform=ax.transAxes,
+            fontsize=12, fontweight="bold", va="bottom", ha="right")
     ax.set_ylim(0, max(0.15, trait_pip[col_pip].max() * 1.15))
     ax.grid(True, axis="y", alpha=0.3)
     ax.legend(loc="upper right", fontsize=8, framealpha=0.9)

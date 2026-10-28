@@ -287,9 +287,7 @@ for _, row in plot_df.iterrows():
             va="center", ha="left", color="black")
 ax.set_xlabel("Fold enrichment (foreground vs background)")
 ax.set_ylabel(r"$-\log_{10}\,p$ (Fisher's exact, one-sided)")
-ax.set_title(f"GO enrichment top-8 per namespace "
-             f"(foreground: top-{TOP_N_PER_TRAIT} SNPs × 13 traits, "
-             f"+/- {WIN_KB} kb)")
+# No baked title -- caption carries it (no-title rule).
 # add per-namespace q < 0.10 threshold lines if any term passes
 for ns in ("biological_process", "molecular_function", "cellular_component"):
     sub_full = go_df[(go_df["namespace"] == ns) &
@@ -322,9 +320,7 @@ if not pf_show.empty:
                 row["Pfam_id"], fontsize=7, va="center", color="black")
     ax.set_xlabel("Fold enrichment (foreground vs background)")
     ax.set_ylabel(r"$-\log_{10}\,p$ (Fisher's exact, one-sided)")
-    ax.set_title(f"Pfam domain enrichment, top 20 "
-                 f"(foreground: top-{TOP_N_PER_TRAIT} SNPs × 13 traits, "
-                 f"+/- {WIN_KB} kb)")
+    # No baked title -- caption carries it (no-title rule).
     if (pf_df["q_bh"] < 0.10).any():
         thresh_p = pf_df.loc[pf_df["q_bh"] < 0.10, "p_value"].max()
         ax.axhline(-np.log10(thresh_p), color=WONG["vermillion"],

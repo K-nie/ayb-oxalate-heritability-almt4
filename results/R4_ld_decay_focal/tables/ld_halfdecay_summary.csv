@@ -1,0 +1,2 @@
+panel,n_markers,n_pairs,rho_hat_refit,rho_hat_stored,half_decay_kb_refit,half_decay_kb_stored,dist_r2_below_0.1_kb_refit,dist_r2_below_0.1_kb_stored,Ss10_half_decay_kb,Ss10_dist_r2_below_0.1_kb,baseline_r2
+dedup n=93,1473,32507,25.927797772683146,2446.0,83.69370036750918,83.6,330.3279412735318,330.3,99.1,391.3,0.01831119263849595

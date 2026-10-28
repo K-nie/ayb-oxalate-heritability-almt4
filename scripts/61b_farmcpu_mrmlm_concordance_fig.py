@@ -51,7 +51,10 @@ ax.axvline(0, color="black", linewidth=0.5)
 ax.set_yticks(ypos)
 ax.set_yticklabels(df["trait_label"], fontsize=9)
 ax.set_xlabel("Single-marker MLM β at ALMT4 SNP")
-ax.set_title("(A) MLM Wald (reference)", fontsize=10)
+# Panel letter only, no descriptive title (no-title rule); the x-axis label
+# already says this panel is the single-marker MLM reference signal.
+ax.text(-0.08, 1.02, "a", transform=ax.transAxes, fontsize=12,
+        fontweight="bold", va="bottom", ha="right")
 ax.grid(True, axis="x", alpha=0.3)
 
 # Panel B: FarmCPU effect at the same SNP (multi-locus model)
@@ -64,7 +67,8 @@ for y, p in zip(ypos, df["farmcpu_p"]):
             ha="right", va="center", fontsize=7.5, color="#444")
 ax.axvline(0, color="black", linewidth=0.5)
 ax.set_xlabel("FarmCPU effect at ALMT4 SNP")
-ax.set_title("(B) FarmCPU (multi-locus)", fontsize=10)
+ax.text(-0.08, 1.02, "b", transform=ax.transAxes, fontsize=12,
+        fontweight="bold", va="bottom", ha="right")
 ax.grid(True, axis="x", alpha=0.3)
 
 # Panel C: BayesB / BayesC PIP — posterior inclusion probability
@@ -80,18 +84,16 @@ ax.axvline(0.05, color="grey", linestyle="--", linewidth=0.6,
 ax.axvline(0.10, color="grey", linestyle=":", linewidth=0.6,
            label="PIP = 0.10 (moderate)")
 ax.set_xlabel("Posterior inclusion probability")
-ax.set_title("(C) Bayesian shrinkage (BayesB / BayesCπ)", fontsize=10)
+ax.text(-0.08, 1.02, "c", transform=ax.transAxes, fontsize=12,
+        fontweight="bold", va="bottom", ha="right")
 ax.set_xlim(0, max(0.15, df[["pip_bayesB_focal",
                               "pip_bayesC_focal"]].max().max() * 1.15))
 ax.grid(True, axis="x", alpha=0.3)
 ax.legend(loc="lower right", fontsize=8, framealpha=0.9)
 
-fig.suptitle(
-    "Four-method concordance at the ALMT4_2 focal SNP (Ss10:15,394,673)\n"
-    "Soluble_Oxalate (vermillion) is the only Holm-significant single-"
-    "marker signal; FarmCPU corroborates with p < 0.02, "
-    "BayesB / BayesCπ PIPs are weak but non-zero",
-    fontsize=11)
+# No suptitle -- the descriptive caption (focal SNP id, that these methods
+# share one data/model family and so are corroborative, not independent)
+# lives in the figure legend only (no-title rule).
 out = FIG / "fig_farmcpu_mrmlm_concordance"
 fig.savefig(out.with_suffix(".png"), dpi=300, bbox_inches="tight")
 fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight")

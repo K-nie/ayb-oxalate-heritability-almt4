@@ -194,8 +194,11 @@ def plot_clade(tree: Phylo.BaseTree.Tree, clade, out_path: Path) -> None:
                           "facecolor": "white",
                           "edgecolor": WONG["vermillion"], "linewidth": 1.0})
 
-    ax.set_title("AYB ALMT4_Ss10 phylogeny-implied syntenic clade\n"
-                  "Internal-node labels = IQ-TREE UFBoot (>50 shown); tip colour by species")
+    # No baked title -- caption carries it (no-title rule). NOTE: this
+    # (non-re-rooted) clade tree is SUPERSEDED in the A2 revision by the
+    # MAD-re-rooted version from 66b_almt4_clade_rerooted.R
+    # (fig_almt4_clade_rerooted.*), which is the Fig 10 the manuscript uses.
+    # Retained for provenance only.
 
     # Legend for species colours.
     from matplotlib.patches import Patch

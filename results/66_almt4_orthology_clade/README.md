@@ -25,7 +25,7 @@ The substitute uses the 142-sequence ALMT family phylogeny from script 33 (`resu
 | Cicer arietinum (chickpea) | 1 | A0A1S2XZY2 |
 
 **Tree topology features:**
-- All 13 internal nodes carry UFBoot ≥ 70 (12 of 13 at 100).
+- All 13 internal nodes carry UFBoot ≥ 94: ten of 13 at 100, the other three at 94, 98 and 99 (per `tables/clade_node_support.csv`; re-verified 2026-10-27). An earlier "12 of 13 at 100" statement here was stale — the table shows ten at 100, minimum 94.
 - AYB ALMT4_Ss10 is direct sister to (cowpea A0A4D6N7X3, common bean V7BAP2) at UFBoot = 100.
 - AYB ALMT4_Ss02 (paralog) sits in a parallel sub-clade with cowpea A0A4D6LN79, common bean V7CJW1+V7CL11, and three soybean orthologs — same set of species, different sub-clade, consistent with a duplication event predating the Phaseoleae / Cicereae split.
 - Arabidopsis ALMT4 (ALMT4_ARATH; Q9C6L8) sits *outside* this legume-specific clade in a sister position, anchoring the deeper orthology.
@@ -58,3 +58,83 @@ dN/dS via PAML codeml is installed (`/opt/homebrew/bin/codeml`) but requires nuc
 ## Script
 
 `scripts/66_almt4_orthology_clade.py`. Runtime: ~ 5 s on a laptop.
+
+---
+
+# REVISION (TPG-2026-09-0323) — orthology, "syntenic clade", honest re-assessment
+
+**Added 2026-10-20.** Addresses Reviewer 1 (L523–573) and Reviewer 2 (#23). Run
+on the **outgroup re-inferred, MAD-rooted** tree (see
+`results/33_almt_phylogeny/README.md` → REVISION). Findings are nearly identical
+on the original 142-tree, so they are rooting-independent.
+
+## 1. Is AYB ALMT4_Ss10 an "ortholog of the characterized ALMT4"? — NO (over-claim)
+
+The current manuscript wording ("sits in the characterized ALMT4 clade",
+"ortholog") is **not defensible**. The phylogeny shows:
+
+- **Nearest relatives of AYB ALMT4_Ss10 are all *uncharacterized legume*
+  ALMTs**, not Arabidopsis ALMT4:
+  common bean V7BAP2 (patristic d = 0.165), soybean A0A0R0EAN5 (0.190),
+  soybean I1LEY0 (0.241), cowpea A0A4D6N7X3 (0.242), chickpea A0A1S2XZY2 (0.395).
+  Its **direct sister** is (cowpea A0A4D6N7X3, common bean V7BAP2), **UFBoot 100**.
+- The focal gene sits in a strongly-supported **legume-specific ALMT4 clade**
+  (7 tips: AYB + 3 soybean + common bean + cowpea + chickpea), **UFBoot 100**.
+- The **characterized Arabidopsis AtALMT4 (Q9C6L8) is ~6× farther away**
+  (patristic d = 1.024) and is **not** inside the legume clade. It joins only at
+  the base of a 22-tip tonoplast ALMT4/5/6 subfamily (UFBoot 100 for the
+  subfamily, but a deep branch separates AtALMT4 from the legume clade — visible
+  in Fig 10).
+- **AtALMT9 (Q9LS46), the cited cryo-EM structure, is in a *different*
+  sub-clade** (patristic d = 1.295), even farther than AtALMT4.
+
+**Defensible wording:** AYB ALMT4_Ss10 is *an uncharacterized legume ALMT in the
+tonoplast ALMT4/5/6 (ALMT clade-II) subfamily*, most closely related to
+uncharacterized legume ALMTs and only **distantly** related to the characterized
+Arabidopsis AtALMT4 — it is **not a one-to-one ortholog of AtALMT4**. AtALMT9 is
+a more distant family member, appropriate only as a **structural homology
+template**, not as the ortholog.
+
+## 2. "Syntenic clade" — should be dropped (never tested)
+
+The 14-tip clade was defined **purely by phylogeny** (walk up the tree until the
+AYB ALMT4_Ss02 paralog is included); **gene order was never tested**, so
+"syntenic" is unsupported. A proper microsynteny test is **not feasible** from
+data on disk: of the clade's 5 species, only AYB
+(`refs/ayb_genome/...Funannotate.gff3`) and cowpea
+(`refs/cowpea_v1/gene_models_main.gff3.gz`) have annotations here — the closest
+relatives (common bean = the direct sister, soybean, chickpea) have **no genome
+annotation present**, and cowpea has no proteome FASTA for flanking-gene ortholog
+BLAST. **Recommendation (b): replace "syntenic clade" with "orthologous clade" /
+"phylogenetically-defined clade"** throughout.
+
+## 3. Exact commands
+
+```bash
+# re-inferred MAD-rooted tree comes from results/33_almt_phylogeny REVISION
+Rscript scripts/66b_almt4_clade_rerooted.R          # Fig 10 (focal + AtALMT4 clade), no baked title
+python  scripts/33c_almt4_topology_report.py \
+        results/33_almt_phylogeny/data/reroot/ALMT_tree_og.treefile   # distances + supports
+```
+
+## 4. Outputs (this revision)
+
+- `figures/fig_almt4_clade_rerooted.{png,pdf}` — Fig 10: the 22-tip tonoplast
+  ALMT4/5/6 clade showing the focal gene nested in the legume ALMT4 clade and
+  AtALMT4 on a deep separate branch. Lowercase/colourblind-safe, sans-serif, no
+  baked title, scale bar shown.
+- `tables/clade_members_rerooted.csv` — 22-tip clade membership + species.
+- `tables/clade_node_support_rerooted.csv` — per-node UFBoot.
+
+## 5. Tool versions
+
+IQ-TREE 3.0.1 · R 4.4 (ape, ggtree, treeio) · Biopython 1.81. The focal-clade
+supports (UFBoot 100 for the legume clade; 100 for the direct cowpea+bean sister)
+are identical on the original 142-tree and the re-inferred 145-tree.
+
+## 6. Caveats
+
+- Uneven UniProt TrEMBL coverage per species still holds; it affects raw tip
+  counts, not the orthology call.
+- The clade is defined by phylogeny only; genomic gene-order synteny remains
+  untested (see point 2).

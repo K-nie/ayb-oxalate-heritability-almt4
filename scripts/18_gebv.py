@@ -276,14 +276,16 @@ for ax, t in zip(axes.ravel(), TRAITS_ALL):
             edgecolor="white", linewidth=0.4)
     ax.axvline(0, color="black", linewidth=0.6)
     ax.set_xlabel(f"{t} GEBV")
-    ax.set_title(f"{t}\nn = {results[t]['n']}, LOO r = {results[t]['loo_r']:.2f}",
-                 fontsize=9)
+    # Per-panel trait identifier as in-axes text, not a baked title; n stays
+    # as context but the LOO r is omitted here (the revised manuscript reports
+    # 5-fold x 50-rep CV, not LOO) to avoid a mixed-metric panel (no-title rule).
+    ax.text(0.5, 0.97, f"{t}\nn = {results[t]['n']}", transform=ax.transAxes,
+            ha="center", va="top", fontsize=8.5)
     ax.set_ylabel("count")
     ax.grid(True, axis="y")
 for ax in axes.ravel()[len(TRAITS_ALL):]:
     ax.set_visible(False)
-fig.suptitle("Per-accession GBLUP genomic-estimated breeding values (GEBVs)",
-             y=1.01, fontsize=12)
+# No suptitle -- caption carries the descriptive title (no-title rule).
 save(fig, "fig47_gebv_distribution_per_trait")
 print("[fig] fig47_gebv_distribution_per_trait")
 
@@ -302,7 +304,7 @@ ax.set_yticks(y)
 ax.set_yticklabels(top_show.index, fontsize=8)
 ax.set_xlabel("Multi-trait merit index (avg favourable-direction z-score GEBV)")
 ax.axvline(0, color="black", linewidth=0.6)
-ax.set_title("Top-20 elite accessions by multi-trait merit index")
+# No baked title -- caption carries it (no-title rule).
 ax.grid(True, axis="x")
 save(fig, "fig48_merit_index_top20")
 print("[fig] fig48_merit_index_top20")
@@ -337,8 +339,7 @@ ax.set_xticklabels(favourable_traits, fontsize=8)
 ax.set_yticks([0.25, 0.5, 0.75, 1.0])
 ax.set_yticklabels(["", "", "", ""])
 ax.set_ylim(0, 1.05)
-ax.set_title("Top-10 elites — favourable-direction GEBV profile (normalised)",
-             pad=18, fontsize=11)
+# No baked title -- caption carries it (no-title rule).
 ax.legend(loc="upper right", bbox_to_anchor=(1.3, 1.05), fontsize=8,
           frameon=False)
 save(fig, "fig49_merit_index_radar_top10")

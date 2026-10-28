@@ -49,9 +49,37 @@ The case for ALMT4 strengthens with this fourth methodological framework; the mo
 
 - **PIP magnitudes are modest.** At n = 41 the spike-and-slab prior has limited power to distinguish non-zero from zero effects. The Soluble_Oxalate PIP of 0.066–0.080 is interpretable as "shift above prior" rather than "Bayesian-significant" (a PIP > 0.5 threshold under BayesB is the conventional bar; not reached here).
 - **Direction-disagreement on Total_Oxalate** (β_B = +0.24 vs β_C = −1.90) reflects the different sparsity priors picking different solutions when the data are weak. The §3.9 pleiotropy-scan finding that Total_Oxalate is null (p = 0.61) stands; the BayesB / BayesC results are consistent with that null finding (the effect is poorly identified under both methods).
-- **MCMC chain mixing not formally diagnosed.** A future revision pass would add Geweke z-statistics and effective sample size per parameter; the current 30,000-iteration chain length is sufficient for the focal-SNP-level summary statistics but a robust per-SNP PIP table benefits from longer chains.
+- **MCMC convergence (checked 2026-10-27).** Geweke z-statistics and effective sample sizes (ESS) were computed with `coda` on the post-burn-in chains (5,000 retained thinned draws) for the focal Soluble_Oxalate trait. Command: `coda::effectiveSize()` and `coda::geweke.diag()` on `bglr_scratch/{BayesB,BayesC}_Soluble_Oxalate_varE.dat` and the `probIn`/`varB` columns of `BayesC_Soluble_Oxalate_ETA_1_parBayesC.dat`, discarding the first 1,000 of 6,000 thinned samples.
+
+  | parameter | ESS | Geweke z |
+  |---|---|---|
+  | BayesB residual variance (varE) | 2064 | +0.07 |
+  | BayesC residual variance (varE) | 1868 | −1.26 |
+  | BayesCπ π (probIn) | 163 | +1.23 |
+  | BayesCπ varB (slab variance) | 47 | −0.89 |
+
+  All Geweke z fall within ±1.96 → no evidence against convergence. The residual-variance chains mix well (ESS ≈ 1,900–2,100); π and the slab variance varB mix more slowly (ESS 163 and 47), as expected for sparsity-prior hyperparameters at n = 41, but still pass Geweke. The BayesCπ π posterior mean (0.0554) sits just above its 0.05 prior mean, consistent with the weak focal-SNP signal. The 30,000-iteration chain is adequate for the focal-SNP summary statistics reported; a robust genome-wide per-SNP PIP table would still benefit from longer chains.
 - **No cross-validation accuracy comparison** of BayesB / BayesC against RR-BLUP. The §3.11 GBLUP predictive ability is the existing benchmark; a per-method CV-r forest would be a natural extension once Analysis 3 (FarmCPU + mrMLM) is also in hand for a four-method comparison.
 
 ## Script
 
 `scripts/63_bayes_regression.R`. Runtime: ~ 8 minutes on a laptop (13 traits × 2 priors × 30k MCMC iterations).
+
+## Higher-PIP SNPs vs the focal SNP (reviewer item, §3.4)
+
+Added 2026-10-27 to answer the reviewer request to name the genes at the SNPs
+that carry a higher soluble-oxalate PIP than the ALMT4-proximal focal SNP.
+
+- Script: `scripts/_bayes_higher_pip_genes.py`
+- Output: `tables/soluble_oxalate_higher_pip_than_focal.csv`
+- Inputs: this analysis's PIP table + `results/89_blast_uniqueness_reanchor/.../marker_placement_classification.csv` (anchoring) + the Funannotate v1.8 GFF (gene-in / nearest-gene + product).
+- Focal SNP rs 100033542 (Ss10:15,394,609; ~3.2 kb 5' of ALMT4_2), PIP BayesB 0.0664 / BayesCpi 0.0802.
+
+Result: **13** SNPs exceed the focal BayesB PIP (12 exceed under both priors). By
+chromosome: **Ss07 (4), Ss04 (3), Ss03 (2), Ss01 (2), Ss08 (1), Ss10 (1)** — note
+Ss07 and Ss04, NOT Ss06 (an earlier draft said "Ss04 and Ss06"; the data show Ss07).
+The three highest-PIP SNPs sit in Ss04 AYBTSS11_012251 (hypothetical protein, PIP
+0.174), Ss07 AYBTSS11_020928 (methylenetetrahydrofolate reductase 1, 0.116) and Ss04
+AYBTSS11_012253 (hypothetical protein, 0.110). None of the higher-PIP genes is an
+oxalate-metabolism enzyme, so the Bayesian analysis does not single out the
+ALMT4-proximal SNP.

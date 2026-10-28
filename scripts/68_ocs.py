@@ -236,8 +236,8 @@ def plot_pareto(pareto_df: pd.DataFrame, out_path: Path) -> None:
                 label=SCENARIO_LABEL[scenario])
     ax.set_xlabel("Achieved inbreeding (c' G c / 2)")
     ax.set_ylabel("Achieved genetic gain (composite EBV)")
-    ax.set_title("OCS Pareto front: genetic gain vs inbreeding\n"
-                  "Lambda swept on log scale from 0.01 (gain-aggressive) to 100 (diversity-preserving)")
+    # No baked title -- caption carries it (no-title rule). The legend names
+    # the three priority scenarios; the lambda sweep is described in the caption.
     ax.legend(loc="lower right", fontsize=9)
     fig.tight_layout()
     fig.savefig(out_path.with_suffix(".png"))
@@ -259,13 +259,17 @@ def plot_top_contributions(contrib_df: pd.DataFrame,
         ax.barh(top["sample"], top["contribution"],
                 color=SCENARIO_COLOUR[scenario],
                 edgecolor="black", linewidth=0.4)
-        ax.set_title(SCENARIO_LABEL[scenario], fontsize=9)
+        # Scenario name as in-axes text only (no per-scenario panel letter):
+        # this 3-scenario contributions chart is a SINGLE top-level panel of
+        # the composite main figure (Fig 15b), so the lowercase bold panel
+        # letter is added once by the composite builder. The three scenarios
+        # are identified by their in-axes name labels.
+        ax.text(0.5, 1.01, SCENARIO_LABEL[scenario], transform=ax.transAxes,
+                ha="center", va="bottom", fontsize=9)
         ax.set_xlabel(f"OCS contribution at lambda = {lam:.3g}")
     axes[0].set_ylabel("Accession")
-    fig.suptitle("Top-15 OCS contributions per breeder priority scenario\n"
-                  "(at moderate-lambda operating point)",
-                  fontsize=11)
-    fig.tight_layout(rect=[0, 0, 1, 0.94])
+    # No suptitle -- caption carries the descriptive title (no-title rule).
+    fig.tight_layout()
     fig.savefig(out_path.with_suffix(".png"))
     fig.savefig(out_path.with_suffix(".pdf"))
     plt.close(fig)

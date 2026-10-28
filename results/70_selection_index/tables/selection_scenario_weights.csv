@@ -1,0 +1,61 @@
+tool,scenario,trait,weight
+Optimal contribution selection,balanced,Tannin,1.0
+Optimal contribution selection,balanced,Phenol,1.0
+Optimal contribution selection,balanced,Flavonoid,1.0
+Optimal contribution selection,balanced,Antioxidant,1.0
+Optimal contribution selection,balanced,Mass_of_Seeds,1.0
+Optimal contribution selection,balanced,Seed_Coat_Tannin,1.0
+Optimal contribution selection,balanced,Crude_Protein,1.0
+Optimal contribution selection,balanced,Total_Oxalate,1.0
+Optimal contribution selection,balanced,Soluble_Oxalate,1.0
+Optimal contribution selection,balanced,Insoluble_Oxalate,1.0
+Optimal contribution selection,soluble_oxalate_priority,Tannin,1.0
+Optimal contribution selection,soluble_oxalate_priority,Phenol,1.0
+Optimal contribution selection,soluble_oxalate_priority,Flavonoid,1.0
+Optimal contribution selection,soluble_oxalate_priority,Antioxidant,1.0
+Optimal contribution selection,soluble_oxalate_priority,Mass_of_Seeds,1.0
+Optimal contribution selection,soluble_oxalate_priority,Seed_Coat_Tannin,1.0
+Optimal contribution selection,soluble_oxalate_priority,Crude_Protein,1.0
+Optimal contribution selection,soluble_oxalate_priority,Total_Oxalate,1.0
+Optimal contribution selection,soluble_oxalate_priority,Soluble_Oxalate,3.0
+Optimal contribution selection,soluble_oxalate_priority,Insoluble_Oxalate,2.0
+Optimal contribution selection,crude_protein_priority,Tannin,1.0
+Optimal contribution selection,crude_protein_priority,Phenol,1.0
+Optimal contribution selection,crude_protein_priority,Flavonoid,1.0
+Optimal contribution selection,crude_protein_priority,Antioxidant,1.0
+Optimal contribution selection,crude_protein_priority,Mass_of_Seeds,1.0
+Optimal contribution selection,crude_protein_priority,Seed_Coat_Tannin,1.0
+Optimal contribution selection,crude_protein_priority,Crude_Protein,3.0
+Optimal contribution selection,crude_protein_priority,Total_Oxalate,1.0
+Optimal contribution selection,crude_protein_priority,Soluble_Oxalate,1.0
+Optimal contribution selection,crude_protein_priority,Insoluble_Oxalate,1.0
+Smith-Hazel index,nutritional,Tannin,1.0
+Smith-Hazel index,nutritional,Phenol,1.0
+Smith-Hazel index,nutritional,Flavonoid,1.0
+Smith-Hazel index,nutritional,Antioxidant,1.0
+Smith-Hazel index,nutritional,Mass_of_Seeds,1.0
+Smith-Hazel index,nutritional,Seed_Coat_Tannin,0.0
+Smith-Hazel index,nutritional,Crude_Protein,3.0
+Smith-Hazel index,nutritional,Total_Oxalate,0.0
+Smith-Hazel index,nutritional,Soluble_Oxalate,2.0
+Smith-Hazel index,nutritional,Insoluble_Oxalate,0.0
+Smith-Hazel index,anti_nutritional,Tannin,1.0
+Smith-Hazel index,anti_nutritional,Phenol,0.0
+Smith-Hazel index,anti_nutritional,Flavonoid,0.0
+Smith-Hazel index,anti_nutritional,Antioxidant,0.0
+Smith-Hazel index,anti_nutritional,Mass_of_Seeds,0.0
+Smith-Hazel index,anti_nutritional,Seed_Coat_Tannin,1.0
+Smith-Hazel index,anti_nutritional,Crude_Protein,1.0
+Smith-Hazel index,anti_nutritional,Total_Oxalate,1.0
+Smith-Hazel index,anti_nutritional,Soluble_Oxalate,3.0
+Smith-Hazel index,anti_nutritional,Insoluble_Oxalate,1.0
+Smith-Hazel index,balanced,Tannin,1.0
+Smith-Hazel index,balanced,Phenol,1.0
+Smith-Hazel index,balanced,Flavonoid,1.0
+Smith-Hazel index,balanced,Antioxidant,1.0
+Smith-Hazel index,balanced,Mass_of_Seeds,1.0
+Smith-Hazel index,balanced,Seed_Coat_Tannin,1.0
+Smith-Hazel index,balanced,Crude_Protein,1.0
+Smith-Hazel index,balanced,Total_Oxalate,1.0
+Smith-Hazel index,balanced,Soluble_Oxalate,1.0
+Smith-Hazel index,balanced,Insoluble_Oxalate,1.0

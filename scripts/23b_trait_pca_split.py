@@ -62,21 +62,35 @@ def scores_plot(scores, samples, clusters, title, fname):
     ax.axvline(0, color="black", linewidth=0.4)
     ax.set_xlabel("PC1")
     ax.set_ylabel("PC2")
-    ax.set_title(title)
+    # Identifier as a small in-axes annotation, not a baked title (no-title rule).
+    ax.text(0.0, 1.02, title, transform=ax.transAxes, ha="left", va="bottom",
+            fontsize=9, fontweight="bold")
     ax.legend(loc="upper right", framealpha=0.9, edgecolor="none")
     publishable_axes(ax, grid="both", grid_alpha=0.20)
     save(fig, fname)
     print(f"[fig] {fname}")
 
 
+# Plain, readable trait labels (no underscores), matching the Figure-2A style.
+NICE_TRAITS = {
+    "Seed_Length": "Seed length", "Seed_Width": "Seed width",
+    "Seed_Thickness": "Seed thickness", "Mass_of_Seeds": "Seed mass",
+    "Seed_Coat_Tannin": "Seed-coat tannin", "Crude_Protein": "Crude protein",
+    "Total_Oxalate": "Total oxalate", "Soluble_Oxalate": "Soluble oxalate",
+    "Insoluble_Oxalate": "Insoluble oxalate", "Tannin": "Tannin",
+    "Phenol": "Phenol", "Flavonoid": "Flavonoid", "Antioxidant": "Antioxidant",
+}
+
+
 def loadings_plot(scores, loadings, traits, clusters, title, fname,
-                  scale_arrow=2.0):
-    fig, ax = plt.subplots(figsize=(7, 6), constrained_layout=True)
+                  scale_arrow=3.0):
+    # Wider canvas so the adjusted labels have room to separate.
+    fig, ax = plt.subplots(figsize=(9, 7.5), constrained_layout=True)
     for k in sorted(set(clusters)):
         m = np.array(clusters) == k
-        ax.scatter(scores[m, 0], scores[m, 1], s=22,
+        ax.scatter(scores[m, 0], scores[m, 1], s=20,
                    color=CLUSTER_PAL[k], edgecolor="white", linewidth=0.4,
-                   alpha=0.40)
+                   alpha=0.30)
     trait_texts = []
     for i, t in enumerate(traits):
         x = loadings[i, 0] * scale_arrow
@@ -84,18 +98,25 @@ def loadings_plot(scores, loadings, traits, clusters, title, fname,
         ax.annotate("", xy=(x, y), xytext=(0, 0),
                     arrowprops=dict(arrowstyle="->", color=WONG["vermillion"],
                                     lw=1.1, alpha=0.90))
-        trait_texts.append(ax.text(x * 1.08, y * 1.08, t,
-                                    fontsize=8.5, color=WONG["vermillion"],
-                                    fontstyle="italic",
-                                    ha="center", va="center", zorder=10))
+        # Seed the label a little beyond the arrow tip, in the arrow's own
+        # direction, so adjustText starts from a sensible, already-spread position.
+        r = (x**2 + y**2) ** 0.5 or 1.0
+        lx, ly = x + 0.45 * x / r, y + 0.45 * y / r
+        trait_texts.append(ax.text(lx, ly, NICE_TRAITS.get(t, t),
+                                   fontsize=9, color=WONG["vermillion"],
+                                   fontstyle="italic",
+                                   ha="center", va="center", zorder=10))
+    # Strong repulsion + visible leader lines connecting each label to its arrow.
     adjust_labels(trait_texts, ax=ax,
                   only_move={"text": "xy", "static": "xy"},
-                  force_text=(1.2, 1.6), expand=(1.35, 1.55))
+                  arrow_lw=0.6, arrow_color="#555555",
+                  force_text=(2.2, 2.8), force_points=(0.6, 0.9),
+                  expand=(1.8, 2.0))
     ax.axhline(0, color="black", linewidth=0.4)
     ax.axvline(0, color="black", linewidth=0.4)
     ax.set_xlabel("PC1")
     ax.set_ylabel("PC2")
-    ax.set_title(title)
+    # No baked title -- the descriptive title lives in the figure caption (no-title rule).
     publishable_axes(ax, grid="both", grid_alpha=0.20)
     save(fig, fname)
     print(f"[fig] {fname}")

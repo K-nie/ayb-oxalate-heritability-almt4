@@ -307,10 +307,11 @@ def plot_topology(seq_length: int,
                   linewidth=0.6, linestyle=":",
                   label=f"segment-mean floor = {TM_SEGMENT_MEAN_MIN}")
     ax_hp.set_ylabel("Kyte-Doolittle\nhydrophobicity\n(window = 19)")
-    ax_hp.set_title(
-        f"AYB ALMT4_2 ({GENE_ID}, transcript {TRANSCRIPT_ID}, {seq_length} aa) -- "
-        f"predicted topology"
-    )
+    # No baked title -- caption carries it (no-title rule). NOTE: this
+    # Kyte-Doolittle hydropathy topology figure is SUPERSEDED in the A2
+    # revision (KD under-resolves the ALMT pore helices; the revised Fig 9
+    # is the homology-model superposition + residue-conservation grid from
+    # results/67). Retained for provenance only; not a manuscript figure.
     ax_hp.legend(loc="upper right", fontsize=8)
 
     # Middle: TM segments as filled bars.

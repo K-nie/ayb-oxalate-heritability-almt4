@@ -4,7 +4,7 @@
 
 ## What was done
 
-Two phenotype PCAs: (A) full 13-trait PCA on lines with all 13 traits scored (n = 45); (B) 9-trait PCA on biochem + seed metrics only (n = 103). Both renderings include a biplot with trait-loading arrows.
+Two phenotype PCAs: (A) full 13-trait PCA on lines with all 13 traits scored (n = 45); (B) 9-trait PCA on biochem + seed metrics only (n = 105). Both renderings include a biplot with trait-loading arrows. (Re-verified 2026-10-27 by re-running the script: the 9-trait PCA is on n = 105 lines, PC1 = 36.0 %, PC2 = 20.7 %, PC3 = 15.9 %, cumulative top-3 = 72.5 %. Earlier values here — n = 103, 34.5/20.5 % — were stale.)
 
 ## Method
 
@@ -12,7 +12,7 @@ Phenotype frame standardised (StandardScaler), PCA via scikit-learn 1.4. Biplot 
 
 ## Quick findings
 
-- **9-trait PCA (n = 103)**: PC1 = 34.5 %, PC2 = 20.5 %, PC1+PC2 cumulative = 55.0 %, top-3 = 70.6 %.
+- **9-trait PCA (n = 105)**: PC1 = 36.0 %, PC2 = 20.7 %, PC1+PC2 cumulative = 56.7 %, top-3 = 72.5 % (PC3 = 15.9 %).
   - PC1 dominated by seed-size traits: Seed_Width (+0.50), Mass_of_Seeds (+0.49), Seed_Thickness (+0.46) — a "seed size" axis.
 - **13-trait PCA (n = 45)**: PC1 = 24.9 %, PC2 = 18.1 %, cumulative top-3 = 58.6 %.
 - Marker-PCA clusters don't separate cleanly in trait PC space — confirms the cluster × trait result (`25_cluster_trait_tests/`): genetic structure is not strongly phenotypically differentiated.

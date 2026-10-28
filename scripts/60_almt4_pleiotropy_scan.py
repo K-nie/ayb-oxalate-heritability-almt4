@@ -237,7 +237,6 @@ def plot_forest(results: pd.DataFrame, out_path: Path) -> None:
     ax_a.set_yticks(y)
     ax_a.set_yticklabels(results["trait"])
     ax_a.set_xlabel("Estimated beta on BLUP scale (per ALMT4 alt-allele dose)")
-    ax_a.set_title("Per-trait ALMT4 SNP effect (BLUP scale)")
     ax_a.invert_yaxis()
 
     # Panel B: standardised beta = beta / trait_SD.
@@ -251,16 +250,33 @@ def plot_forest(results: pd.DataFrame, out_path: Path) -> None:
                       linewidth=0.6, zorder=3)
     ax_b.axvline(0, color="grey", linewidth=0.6)
     ax_b.set_xlabel("Standardised beta (in trait-SD units per alt-allele)")
-    ax_b.set_title("Per-trait standardised ALMT4 SNP effect")
 
-    # Panel-spanning annotation for the Soluble_Oxalate row.
-    fig.suptitle(
-        f"ALMT4 SNP (Ss10:{FOCAL_POS:,}; {FOCAL_RS}) pleiotropy across 13 traits\n"
-        "Forest plot ordered by Wald p (most significant at bottom); "
-        "breeder-priority traits in vermillion",
-        fontsize=11,
-    )
-    fig.tight_layout(rect=[0, 0, 1, 0.93])
+    # No baked title / suptitle -- the descriptive caption (focal SNP id,
+    # that rows are ordered by Wald p, the breeder-priority colour key) lives
+    # in the figure legend text only (Benjamin's no-title rule). We also keep
+    # the in-figure text free of any "partitioning" wording: this panel shows
+    # per-trait marginal SNP effects, and the soluble/insoluble opposition is
+    # an arithmetic identity (Insoluble = Total - Soluble), not evidence of an
+    # active partitioning mechanism -- that nuance is caption/Results text.
+    from matplotlib.lines import Line2D
+    legend_handles = [
+        Line2D([0], [0], marker="o", color=WONG["vermillion"], lw=1.6,
+               markeredgecolor="black", markeredgewidth=0.6, markersize=7,
+               label="Breeder-priority (oxalate / protein)"),
+        Line2D([0], [0], marker="o", color=WONG["blue"], lw=1.6,
+               markeredgecolor="black", markeredgewidth=0.6, markersize=7,
+               label="Other trait"),
+    ]
+    # Upper-right of panel b is clear (top rows' CIs stay left of ~0.6).
+    ax_b.legend(handles=legend_handles, loc="upper right", frameon=False,
+                fontsize=8)
+
+    # Lowercase bold panel letters, top-left, outside the axes corner.
+    for ax, letter in ((ax_a, "a"), (ax_b, "b")):
+        ax.text(-0.08, 1.02, letter, transform=ax.transAxes,
+                fontsize=12, fontweight="bold", va="bottom", ha="right")
+
+    fig.tight_layout()
     fig.savefig(out_path.with_suffix(".png"))
     fig.savefig(out_path.with_suffix(".pdf"))
     plt.close(fig)

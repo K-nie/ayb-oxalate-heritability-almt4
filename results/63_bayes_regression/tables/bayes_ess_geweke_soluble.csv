@@ -1,0 +1,5 @@
+parameter,ESS,Geweke_z
+BayesB residual variance (varE),2064,0.07
+BayesCpi residual variance (varE),1868,-1.26
+BayesCpi pi (probIn),163,1.23
+BayesCpi varB (slab variance),47,-0.89

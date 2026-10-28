@@ -54,3 +54,24 @@ Seed-size dimensions (Length / Width / Thickness) are excluded as direction-neut
 ## Script
 
 `scripts/70_selection_index.py`. Runtime: ~ 5 s on a laptop.
+
+## Smith-Hazel P: BLUE phenotypic covariance is PRIMARY (reviewer R1.9, updated 2026-10-28)
+
+In the Smith-Hazel index P is by definition the phenotypic covariance of the selection
+criteria. P is therefore now estimated as the phenotypic variance-covariance of the
+stage-one BLUEs (`results/R1_blue_pipeline/tables/phenotype_blues.csv`); this is the
+PRIMARY index and all of script 70's outputs (per_accession_index_per_scenario.csv,
+index_weights_b.csv, Figure 16 fig_index_rank_changes, robust_vs_scenario_elites.csv)
+are built from it. `build_PG_matrices(..., p_source="blue")` is the default.
+
+Primary (BLUE-P) scenario correlations and elites (from per_accession_index_per_scenario.csv):
+  - pairwise Spearman: nutritional vs anti-nutritional -0.29; nutritional vs balanced +0.57; anti-nutritional vs balanced +0.31
+  - top-10 overlap: nut/anti 0; nut/bal 6; anti/bal 4; robust (all three) = 0
+
+Sensitivity (BLUP-correlation P): `scripts/70b_smith_hazel_blueP.py` solves the index with
+the earlier BLUP-correlation P (`build_PG_matrices(..., p_source="blup")`) and compares it to
+the BLUE-P primary. The two rankings agree only weakly -- Spearman -0.08 (nutritional),
+-0.09 (anti-nutritional), +0.25 (balanced); 1-2 of 10 elites shared -- so the index is
+unstable to the P specification and is reported as a preliminary resource. Outputs:
+per_accession_index_per_scenario_blueP.csv (here the BLUE index recomputed in 70b),
+index_weights_b_blueP.csv, blueP_vs_blupP_comparison.csv.

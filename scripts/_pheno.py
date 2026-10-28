@@ -97,6 +97,24 @@ TRAITS_REPLICATED = ["Tannin", "Phenol", "Flavonoid", "Antioxidant",
 TRAITS_MEANS_ONLY = ["Seed_Coat_Tannin", "Total_Oxalate",
                      "Soluble_Oxalate", "Insoluble_Oxalate"]
 
+# Canonical accession-name harmonisation. The wet-chemistry sheets file two
+# accessions under labels that drifted from the genotyped-panel / seed-metrics
+# convention: TSs151 -> TSs151B (a dropped "B") and TSs366 -> TSs336 (a 366<->336
+# digit swap). The drifted and canonical labels never co-occur in any sheet, the
+# Seed_Metrics accession set equals the genotyped panel exactly, and the pairs
+# are near-identical lexically, so these are the same accessions mislabelled
+# between the wet-chemistry and seed-metrics measurement rounds. Harmonise the
+# wet-chemistry labels to the panel label so each accession's wet-chemistry and
+# seed metrics (and its genotype, downstream) join instead of splitting into two
+# half-populated rows.
+SAMPLE_ALIASES = {"TSs151": "TSs151B", "TSs366": "TSs336"}
+
+
+def _canon_samples(s: pd.Series) -> pd.Series:
+    """Strip whitespace and map drifted accession labels to the panel label."""
+    return s.astype(str).str.strip().replace(SAMPLE_ALIASES)
+
+
 TYPO_CORRECTIONS = [
     {"sample": "TSs282", "trait": "Seed_Thickness",
      "raw_value": 63.747, "corrected_value": 6.3747,
@@ -187,7 +205,7 @@ def load_replicates(trait: Optional[str] = None,
     parts = [_wet_reps(), _crude_protein_reps(),
              _moisture_reps(), _seed_metrics_reps()]
     out = pd.concat(parts, ignore_index=True)
-    out["sample"] = out["sample"].astype(str).str.strip()
+    out["sample"] = _canon_samples(out["sample"])
     if apply_corrections:
         for c in REPLICATE_TYPO_CORRECTIONS:
             mask = ((out["sample"] == c["sample"]) &
@@ -236,6 +254,8 @@ def load_means(apply_corrections: bool = True) -> pd.DataFrame:
     wet = _wet_means()
     seed = _seed_metrics_means()
     j46 = _j46_means()
+    for _df in (wet, seed, j46):
+        _df["sample"] = _canon_samples(_df["sample"])
     samples = sorted(set(wet["sample"]) | set(seed["sample"]) | set(j46["sample"]))
     out = pd.DataFrame({"sample": samples})
     out = (out.merge(wet, on="sample", how="left")
@@ -524,18 +544,212 @@ def load_blups(use_mc_covariate_for_protein: bool = True,
 
 
 # ---------------------------------------------------------------------------
+# Stage-1 BLUEs (fixed-genotype LS-means) — "don't BLUP twice"
+# (Holland & Piepho 2024, G3 jkae250). For a two-stage genomic-prediction /
+# GWAS workflow the stage-1 genotype values that feed stage 2 should be
+# fixed-effect BLUEs with a per-genotype weight, NOT random-effect BLUPs:
+# shrinking the genotype means in stage 1 and again (through the kinship
+# prior) in stage 2 double-shrinks and biases the stage-2 variance
+# components. The BLUE of genotype i is its least-squares mean from a model
+# that treats genotype as FIXED; the stage-2 weight is the inverse of the
+# squared standard error of that LS-mean (Smith, Cullis & Thompson 2001;
+# Damesa et al. 2017; Möhring & Piepho 2009).
+# ---------------------------------------------------------------------------
+
+def _fit_blue_one_trait(reps_df: pd.DataFrame, trait: str,
+                        covariate_column: Optional[str] = None,
+                        rep_fixed_effect: bool = True,
+                        ) -> tuple[pd.Series, pd.Series, pd.Series, dict]:
+    """Fixed-genotype OLS → per-genotype BLUE (LS-mean), its SE, and the
+    inverse-variance weight 1/SE².
+
+    Model (all effects FIXED):
+        value_ij = mu + (b·MC_ij)? + rep_j + g_i + e_ij
+
+    The LS-mean for genotype i is evaluated at the mean covariate value
+    (for Crude_Protein's MC) and averaged over the rep levels, so it is on
+    the same scale as a raw genotype mean under a balanced design. The SE
+    is the standard error of that linear contrast, sqrt(L (X'X)^-1 L' σ²),
+    obtained directly from statsmodels' t_test. The stage-2 weight is
+    w_i = 1 / SE_i² (Smith et al. 2001).
+
+    Returns (blue_series, se_series, weight_series, info).
+    """
+    import statsmodels.formula.api as smf
+    import patsy
+
+    sub = reps_df[reps_df["trait"] == trait].copy()
+    if covariate_column is not None and covariate_column in sub.columns:
+        sub = sub.dropna(subset=[covariate_column])
+    sub = sub.dropna(subset=["value"])
+    sub["sample"] = sub["sample"].astype(str)
+    sub["Rep"] = sub["Rep"].astype(str)
+
+    terms = []
+    use_cov = covariate_column is not None and covariate_column in sub.columns
+    if use_cov:
+        terms.append(covariate_column)
+    use_rep = rep_fixed_effect and sub["Rep"].nunique() > 1
+    if use_rep:
+        terms.append("C(Rep)")
+    terms.append("C(sample)")
+    formula = "value ~ " + " + ".join(terms)
+
+    try:
+        res = smf.ols(formula, data=sub).fit()
+    except Exception as e:
+        gm = sub.groupby("sample")["value"].mean()
+        return (gm, pd.Series(np.nan, index=gm.index),
+                pd.Series(np.nan, index=gm.index),
+                {"trait": trait, "var_e": np.nan, "model": formula,
+                 "status": f"failed: {e}"})
+
+    design_info = res.model.data.design_info
+    rep_levels = sorted(sub["Rep"].unique())
+    cov_mean = float(sub[covariate_column].mean()) if use_cov else None
+    genos = sorted(sub["sample"].unique())
+
+    blue, se = {}, {}
+    for g in genos:
+        rows = []
+        for rl in rep_levels:
+            d = {"sample": g, "Rep": rl}
+            if use_cov:
+                d[covariate_column] = cov_mean
+            rows.append(d)
+        fr = pd.DataFrame(rows)
+        X = patsy.dmatrix(design_info, fr, return_type="dataframe")
+        L = X.mean(axis=0).values            # average over reps → LS-mean
+        tt = res.t_test(L)
+        blue[g] = float(np.ravel(tt.effect)[0])
+        se[g] = float(np.ravel(tt.sd)[0])
+
+    blue_s = pd.Series(blue, name=trait)
+    se_s = pd.Series(se, name=trait)
+    weight_s = 1.0 / (se_s ** 2)
+    n_per = sub.groupby("sample").size()
+
+    info = {
+        "trait": trait,
+        "model": formula,
+        "var_e": float(res.scale),
+        "n_genotypes": int(len(genos)),
+        "n_rep_median": int(n_per.median()),
+        "n_rep_min": int(n_per.min()),
+        "n_rep_max": int(n_per.max()),
+        "mean_SE": float(se_s.mean()),
+        "mean_weight": float(weight_s.mean()),
+        "weight_cv": float(weight_s.std(ddof=1) / weight_s.mean())
+        if weight_s.mean() != 0 else np.nan,
+        "status": "ok",
+    }
+    return blue_s, se_s, weight_s, info
+
+
+def load_blues(use_mc_covariate_for_protein: bool = True,
+               apply_corrections: bool = True,
+               rep_fixed_effect: bool = True,
+               return_weights: bool = False,
+               return_variance_components: bool = False,
+               ) -> pd.DataFrame:
+    """Wide table of stage-1 BLUEs: sample × 13 traits.
+
+    For the 9 replicated traits the value is the fixed-genotype LS-mean
+    (BLUE). For the 4 means-only traits (Seed_Coat_Tannin + the three
+    oxalate fractions) the genotype mean is passed through unchanged —
+    those are ALREADY un-shrunk BLUEs (a single observation per genotype),
+    so BLUP vs BLUE is a no-op for them.
+
+    Returns:
+        BLUE table (always)
+        + per-(sample, trait) weight table when return_weights=True
+          (columns sample, trait, BLUE, SE, weight=1/SE², n_rep)
+        + per-trait residual-variance table when
+          return_variance_components=True
+    """
+    reps = load_replicates()
+    means = load_means(apply_corrections=False)
+    samples = sorted(set(reps["sample"].unique()) | set(means.index))
+    blue_df = pd.DataFrame(index=samples)
+    weight_rows = []
+    var_rows = []
+
+    if use_mc_covariate_for_protein:
+        reps_with_mc = _attach_rep_matched_mc(reps)
+    else:
+        reps_with_mc = reps
+
+    for t in TRAITS_REPLICATED:
+        if t == "Crude_Protein" and use_mc_covariate_for_protein:
+            blue, se, wt, info = _fit_blue_one_trait(
+                reps_with_mc, t, covariate_column="MC",
+                rep_fixed_effect=rep_fixed_effect)
+        else:
+            blue, se, wt, info = _fit_blue_one_trait(
+                reps, t, rep_fixed_effect=rep_fixed_effect)
+        blue_df[t] = blue.reindex(samples)
+        for s in blue.index:
+            weight_rows.append({"sample": s, "trait": t,
+                                "BLUE": float(blue[s]),
+                                "SE": float(se[s]),
+                                "weight": float(wt[s]),
+                                "n_rep": int(reps[(reps["sample"] == s) &
+                                                  (reps["trait"] == t)].shape[0])})
+        var_rows.append(info)
+
+    for t in TRAITS_MEANS_ONLY:
+        blue_df[t] = means[t].reindex(samples)
+        for s in means.index:
+            v = means.loc[s, t]
+            if pd.notna(v):
+                weight_rows.append({"sample": s, "trait": t,
+                                    "BLUE": float(v), "SE": np.nan,
+                                    "weight": 1.0, "n_rep": 1})
+        var_rows.append({"trait": t, "model": "means_only_no_replicates",
+                         "var_e": np.nan, "n_genotypes": int(means[t].notna().sum()),
+                         "n_rep_median": 1, "n_rep_min": 1, "n_rep_max": 1,
+                         "mean_SE": np.nan, "mean_weight": 1.0,
+                         "weight_cv": np.nan, "status": "means_only"})
+
+    blue_df.index.name = "sample"
+    blue_df.index = blue_df.index.astype(str).str.strip()
+    if apply_corrections:
+        for m in TYPO_CORRECTIONS:
+            if m["sample"] in blue_df.index and m["trait"] in blue_df.columns:
+                blue_df.at[m["sample"], m["trait"]] = m["corrected_value"]
+    blue_df = blue_df[TRAITS_ALL]
+
+    out: list = [blue_df]
+    if return_weights:
+        out.append(pd.DataFrame(weight_rows))
+    if return_variance_components:
+        out.append(pd.DataFrame(var_rows))
+    if len(out) == 1:
+        return out[0]
+    return tuple(out)  # type: ignore[return-value]
+
+
+# ---------------------------------------------------------------------------
 # Canonical loader — defaults to BLUPs (the new behaviour). Old callers
 # get an automatic upgrade unless they explicitly ask for means.
 # ---------------------------------------------------------------------------
 
 def load_phenotypes(use_blups: bool = True,
-                     apply_corrections: bool = True) -> pd.DataFrame:
+                     apply_corrections: bool = True,
+                     use_blues: bool = False) -> pd.DataFrame:
     """Default entry point. Returns BLUP-corrected genotype values where
     replicates exist; means as a fallback for the four means-only
     traits.
 
-    Set `use_blups=False` for the legacy means-only behaviour.
+    Set `use_blues=True` for stage-1 fixed-genotype BLUEs (the
+    "don't BLUP twice" response for the two-stage workflow; Holland &
+    Piepho 2024). `use_blues=True` takes precedence over `use_blups`.
+    Set `use_blups=False` (and `use_blues=False`) for the legacy
+    means-only behaviour.
     """
+    if use_blues:
+        return load_blues(use_mc_covariate_for_protein=True,
+                          apply_corrections=apply_corrections)
     if use_blups:
         return load_blups(use_mc_covariate_for_protein=True,
                            apply_corrections=apply_corrections)

@@ -62,6 +62,7 @@ apply()
 ROOT = Path("/Users/black_einstein/Desktop/Other_Projects/Prof Adewale_s Data")
 GEBV_CSV = ROOT / "results" / "18_gebv" / "tables" / "gebv_per_accession.csv"
 BLUP_CSV = ROOT / "results" / "00_blup_pipeline" / "tables" / "phenotype_blups.csv"
+BLUE_CSV = ROOT / "results" / "R1_blue_pipeline" / "tables" / "phenotype_blues.csv"
 VARCOMP_CSV = ROOT / "results" / "00_blup_pipeline" / "tables" / "variance_components.csv"
 OUT = ROOT / "results" / "70_selection_index"
 FIG = OUT / "figures"
@@ -112,13 +113,21 @@ def load_variance_components() -> pd.DataFrame:
 
 
 def build_PG_matrices(blups: pd.DataFrame, gebvs: pd.DataFrame,
-                       vc: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
+                       vc: pd.DataFrame, blues: pd.DataFrame = None,
+                       p_source: str = "blue") -> tuple[np.ndarray, np.ndarray]:
     """Construct P (phenotypic) and G (genetic) variance-covariance
     matrices on the INDEX_TRAITS subset.
 
-    P -- estimated from the BLUP-stage Cullis-line-mean phenotypic
-         variance per trait on the diagonal, with off-diagonals from the
-         observed BLUP correlation scaled by sqrt(P_ii * P_jj).
+    P -- PRIMARY (p_source="blue", reviewer R1.9): the phenotypic
+         variance-covariance of the stage-one BLUEs over the selection
+         criteria -- in the Smith-Hazel framework P is exactly the
+         phenotypic (co)variance of the selection criteria, so the BLUE
+         phenotypic covariance is the correct estimate. SENSITIVITY
+         (p_source="blup"): the legacy estimate -- BLUP-stage Cullis-line-
+         mean phenotypic variance on the diagonal, off-diagonals from the
+         BLUP correlation scaled by sqrt(P_ii*P_jj). BLUP correlations are
+         shrunk genetic predictions, not phenotypic, so this is reported
+         only as a sensitivity comparison.
     G -- estimated from the per-trait sigma_g^2 reported in
          variance_components.csv on the diagonal, with off-diagonals from
          the GEBV correlation scaled by sqrt(G_ii * G_jj). GEBV
@@ -129,7 +138,7 @@ def build_PG_matrices(blups: pd.DataFrame, gebvs: pd.DataFrame,
     p_blups = blups[INDEX_TRAITS]
     p_gebv = gebvs[INDEX_TRAITS]
 
-    # Phenotypic correlation matrix from BLUPs.
+    # Phenotypic correlation matrix from BLUPs (used only for the BLUP P).
     p_corr = p_blups.corr(method="pearson").values
     g_corr = p_gebv.corr(method="pearson").values
 
@@ -157,9 +166,19 @@ def build_PG_matrices(blups: pd.DataFrame, gebvs: pd.DataFrame,
 
     p_var = g_var + e_var
 
-    # Build G and P from correlations * sqrt(var_i * var_j).
-    P = p_corr * np.sqrt(np.outer(p_var, p_var))
+    # G from genetic correlations * sqrt(var_i * var_j).
     G = g_corr * np.sqrt(np.outer(g_var, g_var))
+
+    # P: primary = phenotypic covariance of the stage-one BLUEs (R1.9);
+    # sensitivity = BLUP-correlation estimate.
+    if p_source == "blue":
+        if blues is None:
+            raise ValueError("p_source='blue' requires the BLUEs frame")
+        P = blues[INDEX_TRAITS].cov().values
+    elif p_source == "blup":
+        P = p_corr * np.sqrt(np.outer(p_var, p_var))
+    else:
+        raise ValueError(f"unknown p_source {p_source!r}")
 
     # Ridge for invertibility at small n.
     ridge = 1e-3 * np.eye(len(INDEX_TRAITS))
@@ -318,13 +337,12 @@ def plot_index_rank_changes(ranks: pd.DataFrame, robust: list[str],
     else:
         subtitle = ("No accession is top-10 under all three scenarios -- "
                      "scenario-specific elites coloured by winning scenario")
-    # Use suptitle so the multi-line title sits in the figure margin and
-    # cannot land on top of the topmost ladder label.
-    fig.suptitle("Per-accession rank under three Smith-Hazel "
-                  "selection-index scenarios\n" + subtitle,
-                  fontsize=10.5, y=0.995)
-    # Top y-limit at -6 (visually above rank 1) gives the topmost label
-    # ~6 ranks of head-room beneath the suptitle.
+    # No suptitle -- the descriptive title and the robust-elite note (here,
+    # that no accession is top-10 under all three scenarios) live in the
+    # caption only (no-title rule). `subtitle` is retained for the console
+    # log / README but is not drawn onto the figure.
+    print(f"[fig note] {subtitle}")
+    # Keep a little head-room above rank 1 so the topmost ladder label breathes.
     ax.set_ylim(top=-6)
     ax.set_xlim(-0.25, len(scenarios) - 1 + 0.85)
     publishable_axes(ax, grid="y", grid_alpha=0.20)
@@ -372,7 +390,7 @@ def plot_weights_forest(weights_df: pd.DataFrame, out_path: Path) -> None:
     ax.set_xticks(x)
     ax.set_xticklabels(INDEX_TRAITS, rotation=30, ha="right")
     ax.set_ylabel("Smith-Hazel index weight b")
-    ax.set_title("Smith-Hazel selection-index weights per trait per scenario")
+    # No baked title -- caption carries it (no-title rule).
     ax.legend(loc="upper left", fontsize=9)
     fig.tight_layout()
     fig.savefig(out_path.with_suffix(".png"))
@@ -384,16 +402,19 @@ def plot_weights_forest(weights_df: pd.DataFrame, out_path: Path) -> None:
 # Main
 # ---------------------------------------------------------------------------
 def main() -> None:
-    print(f"[load] GEBVs and BLUPs")
+    print(f"[load] GEBVs, BLUPs and stage-one BLUEs")
     gebvs = pd.read_csv(GEBV_CSV).set_index("sample")
     blups = pd.read_csv(BLUP_CSV).set_index("sample")
+    blues = pd.read_csv(BLUE_CSV).set_index("sample")
     common = sorted(set(gebvs.index) & set(blups.index))
     gebvs = gebvs.loc[common]
     blups = blups.loc[common]
+    blues = blues.reindex(common)
     print(f"  {len(common)} accessions x {len(INDEX_TRAITS)} index traits")
 
     vc = load_variance_components()
-    P, G = build_PG_matrices(blups, gebvs, vc)
+    # Primary P = phenotypic covariance of the stage-one BLUEs (reviewer R1.9).
+    P, G = build_PG_matrices(blups, gebvs, vc, blues=blues, p_source="blue")
     print(f"  P diag mean = {np.mean(np.diag(P)):.3g}; G diag mean = {np.mean(np.diag(G)):.3g}")
 
     # Build b per scenario.

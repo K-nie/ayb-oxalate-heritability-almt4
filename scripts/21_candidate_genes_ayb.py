@@ -415,7 +415,9 @@ N_MARKERS_TESTED = int(gwas[ALL_TRAITS[0]].shape[0])  # all markers
 def manhattan_ayb(trait, ax):
     g = gwas[trait].dropna(subset=["chr_ayb", "snp_pos_ayb"]).copy()
     if g.empty:
-        ax.set_title(f"{trait} — no AYB-anchored SNPs")
+        # In-axes note, not a baked title (no-title rule).
+        ax.text(0.5, 0.5, f"{trait} — no AYB-anchored SNPs",
+                transform=ax.transAxes, ha="center", va="center", fontsize=10)
         return
     g["pos"] = g["snp_pos_ayb"].astype(int)
     g["chr"] = g["chr_ayb"]
@@ -511,8 +513,13 @@ def manhattan_ayb(trait, ax):
     ax.set_xticks(mids)
     ax.set_xticklabels(chrs, rotation=0, fontsize=8)
     ax.set_ylabel(r"$-\log_{10}\,p$")
-    ax.set_title(f"{trait}   AYB-anchored ({len(g):,} SNPs); "
-                 f"top {TOP_N} scanned +/- {WIN_KB} kb", fontsize=10)
+    # Per-panel trait identifier as in-axes text (top-right, clear of the
+    # upper-left Bonferroni legend and the callout band), not a baked title
+    # (no-title rule). The "top N scanned +/- W kb" scan detail moves to the
+    # caption / README.
+    ax.text(0.99, 0.97, f"{trait.replace('_', ' ')}  ({len(g):,} SNPs)",
+            transform=ax.transAxes, ha="right", va="top", fontsize=9,
+            fontweight="bold")
     # Headroom: 45-degree rotated labels rise above band_y; longest label
     # is ~25 chars which adds approximately the same vertical extent as
     # horizontal so we add ~2 to band_y.
@@ -559,10 +566,11 @@ def composite_manhattan(traits, fname, panel_letter_offset=0):
         axes = [axes]
     for i, (ax, t) in enumerate(zip(axes, traits_present)):
         manhattan_ayb(t, ax)
-        letter = chr(ord("A") + panel_letter_offset + i)
-        # Replace the per-trait title with one that carries the panel letter.
-        current = ax.get_title()
-        ax.set_title(f"({letter}) {current}", fontsize=10, loc="center")
+        # No per-row panel letters here: this multi-trait Manhattan strip is a
+        # SINGLE top-level panel of the composite main figure (Fig 4a = seed
+        # strip, Fig 4b = protein/oxalate strip), so the lowercase bold panel
+        # letter is added once by the composite builder. Each row is already
+        # identified by its in-axes trait-id text (top-right).
     save(fig, fname)
     print(f"  {fname}: {n}-panel composite")
 

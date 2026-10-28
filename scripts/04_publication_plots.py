@@ -100,9 +100,8 @@ for ax, (col, title, cutoff, x) in zip(
         ax.legend(loc="upper right")
     ax.set_xlabel(x)
     ax.set_ylabel("SNP count")
-    ax.set_title(title)
-fig.suptitle(f"DArTseq marker QC — {len(marker_qc):,} SNPs across {len(sample_qc)} AYB lines",
-             y=1.03, fontsize=12)
+axes.ravel()[0].text(-0.18, 1.10, "a", transform=axes.ravel()[0].transAxes,
+                     fontsize=14, fontweight="bold", va="bottom", ha="right")
 save(fig, "fig01_marker_qc")
 print("[fig] fig01_marker_qc")
 
@@ -117,8 +116,9 @@ ax.hist(sample_qc["call_rate"], bins=22, color=WONG["vermillion"],
 ax.axvline(0.90, color="black", ls="--", lw=1.2, label="cutoff = 0.90")
 ax.set_xlabel("Per-sample call rate")
 ax.set_ylabel("Sample count")
-ax.set_title("Sample call rate")
 ax.legend(loc="upper left")
+ax.text(-0.16, 1.06, "b", transform=ax.transAxes,
+        fontsize=14, fontweight="bold", va="bottom", ha="right")
 
 ax = axes[1]
 ax.scatter(sample_qc["call_rate"], sample_qc["observed_het"],
@@ -126,8 +126,6 @@ ax.scatter(sample_qc["call_rate"], sample_qc["observed_het"],
            alpha=0.85)
 ax.set_xlabel("Per-sample call rate")
 ax.set_ylabel("Observed heterozygosity")
-ax.set_title("Call rate vs heterozygosity")
-fig.suptitle(f"AYB sample QC — {len(sample_qc)} lines", y=1.05, fontsize=12)
 save(fig, "fig02_sample_qc")
 print("[fig] fig02_sample_qc")
 
@@ -149,7 +147,6 @@ ax2.spines["right"].set_color(WONG["vermillion"])
 ax.set_xticks(xs)
 ax.set_xticklabels(pca_var["PC"])
 ax.set_ylabel("Variance per PC (%)")
-ax.set_title(f"PCA scree — {len(marker_qc[marker_qc['maf'].ge(0.05) & marker_qc['call_rate'].ge(0.90)]):,} QC-filtered SNPs")
 save(fig, "fig03_pca_scree")
 print("[fig] fig03_pca_scree")
 
@@ -161,16 +158,17 @@ fig, ax = plt.subplots(figsize=(5.6, 5.0), constrained_layout=True)
 for k in sorted(pca_coords["cluster"].unique()):
     m = pca_coords["cluster"] == k
     ax.scatter(pca_coords.loc[m, "PC1"], pca_coords.loc[m, "PC2"],
-               s=44, color=CLUSTER_PAL[k], edgecolor="black",
+               s=44, color=CLUSTER_PAL[1 - k], edgecolor="black",
                linewidth=0.5, alpha=0.9,
-               label=f"Cluster {k + 1} (n = {m.sum()})")
+               label=f"Cluster {2 - k} (n = {m.sum()})")
 v1 = pca_var.iloc[0]["variance_explained"] * 100
 v2 = pca_var.iloc[1]["variance_explained"] * 100
 ax.set_xlabel(f"PC1 ({v1:.1f} %)")
 ax.set_ylabel(f"PC2 ({v2:.1f} %)")
-ax.set_title("Genetic-PCA structure of the 105-line AYB panel")
 ax.legend(loc="upper right")
 ax.grid(True)
+ax.text(-0.14, 1.03, "a", transform=ax.transAxes,
+        fontsize=14, fontweight="bold", va="bottom", ha="right")
 save(fig, "fig04_pca_clusters")
 print("[fig] fig04_pca_clusters")
 
@@ -179,7 +177,7 @@ print("[fig] fig04_pca_clusters")
 # Fig 5. PCA colored by phenotype (4 panels)
 # ---------------------------------------------------------------------------
 fig, axes = plt.subplots(2, 2, figsize=(7.5, 6.8), constrained_layout=True)
-for ax, trait in zip(axes.ravel(), TRAITS):
+for letter, ax, trait in zip("abcd", axes.ravel(), TRAITS):
     sc = ax.scatter(pca_coords["PC1"], pca_coords["PC2"],
                     c=pca_coords[trait], s=40, cmap="viridis",
                     edgecolor="black", linewidth=0.4)
@@ -188,9 +186,10 @@ for ax, trait in zip(axes.ravel(), TRAITS):
     cb.ax.tick_params(labelsize=8)
     ax.set_xlabel(f"PC1 ({v1:.1f} %)")
     ax.set_ylabel(f"PC2 ({v2:.1f} %)")
-    ax.set_title(trait)
-fig.suptitle("PCA scores coloured by seed-biochemistry trait values",
-             y=1.02, fontsize=12)
+    ax.text(0.14, 1.02, trait, transform=ax.transAxes,
+            ha="left", va="bottom", fontsize=10)
+    ax.text(-0.16, 1.04, letter, transform=ax.transAxes,
+            ha="right", va="bottom", fontsize=13, fontweight="bold")
 save(fig, "fig05_pca_phenotype")
 print("[fig] fig05_pca_phenotype")
 
@@ -320,7 +319,7 @@ print("[fig] fig11_amova_null")
 # ---------------------------------------------------------------------------
 fig, axes = plt.subplots(2, 2, figsize=(7.5, 6.8), constrained_layout=True)
 for ax, trait in zip(axes.ravel(), TRAITS):
-    df = pd.read_csv(R3 / f"tables/gwas_{trait}_M1_K.csv")
+    df = pd.read_csv(R3 / f"tables/gwas_{trait}_M2_KQ.csv")  # G + PC scan (matches §3.3)
     p = np.sort(df["p"].values)
     m = len(p)
     k = np.arange(1, m + 1)
@@ -331,7 +330,7 @@ for ax, trait in zip(axes.ravel(), TRAITS):
     hi = -np.log10(stats.beta.ppf(0.025, k, m - k + 1))
     ax.fill_between(exp, lo, hi, color=WONG["skyblue"], alpha=0.25,
                     label="95 % concentration band")
-    lam_row = trait_sum[(trait_sum["trait"] == trait) & (trait_sum["model"] == "M1_K")].iloc[0]
+    lam_row = trait_sum[(trait_sum["trait"] == trait) & (trait_sum["model"] == "M2_KQ")].iloc[0]
     ax.scatter(exp, obs, s=10, color=WONG["blue"], edgecolor="none")
     lim = max(exp.max(), obs.max(), hi.max()) + 0.2
     ax.plot([0, lim], [0, lim], color="black", ls="--", lw=0.9)
@@ -339,10 +338,12 @@ for ax, trait in zip(axes.ravel(), TRAITS):
     ax.set_ylim(0, lim)
     ax.set_xlabel("Expected $-\\log_{10}(p)$")
     ax.set_ylabel("Observed $-\\log_{10}(p)$")
-    ax.set_title(f"{trait}   $\\lambda_{{GC}}$ = {lam_row['lambda_GC']:.2f}")
-fig.suptitle("QQ — MLM (K kinship) per trait", y=1.02, fontsize=12)
-save(fig, "fig12_qq_M1_K")
-print("[fig] fig12_qq_M1_K")
+    # Per-panel trait id + lambda_GC as in-axes text, not a baked title.
+    ax.text(0.03, 0.97, f"{trait}   $\\lambda_{{GC}}$ = {lam_row['lambda_GC']:.2f}",
+            transform=ax.transAxes, ha="left", va="top", fontsize=9)
+# No suptitle -- caption carries the descriptive title (no-title rule).
+save(fig, "fig12_qq_M2_KQ")
+print("[fig] fig12_qq_M2_KQ")
 
 
 # ---------------------------------------------------------------------------
@@ -356,18 +357,25 @@ def clean_chrom(c):
     s = re.sub(r"\s*\(.*\)\s*", "", s)  # strip "(old3)" parts
     return s
 
+# Position markers on the S. stenocarpa reference (AYB re-anchoring), consistent with
+# Figure 4 and the Methods -- NOT the cowpea proxy that the scan table carries.
+ANCHOR = pd.read_csv("/Users/black_einstein/Desktop/Other_Projects/Prof Adewale_s Data"
+                     "/results/89_blast_uniqueness_reanchor/tables/"
+                     "marker_placement_classification.csv")[["rs", "top_chrom", "top_pos"]]
+ANCHOR = ANCHOR.dropna(subset=["top_pos"])
 fig, axes = plt.subplots(2, 2, figsize=(8.6, 6.5), constrained_layout=True)
 for ax, trait in zip(axes.ravel(), TRAITS):
-    df = pd.read_csv(R3 / f"tables/gwas_{trait}_M1_K.csv")
-    df["chrom_c"] = df["chrom"].map(clean_chrom)
-    df = df.dropna(subset=["chrom_c"]).copy()
-    df["pos"] = pd.to_numeric(df["pos"], errors="coerce")
+    df = pd.read_csv(R3 / f"tables/gwas_{trait}_M2_KQ.csv")  # G + PC scan (matches §3.3)
+    df = df.drop(columns=["chrom", "pos"], errors="ignore").merge(ANCHOR, on="rs", how="inner")
+    df["chrom_c"] = df["top_chrom"]
+    df["pos"] = pd.to_numeric(df["top_pos"], errors="coerce")
     df = df.dropna(subset=["pos"])
     if df.empty:
-        ax.set_title(f"{trait} — no anchored markers")
+        ax.text(0.5, 0.5, f"{trait} — no anchored markers",
+                transform=ax.transAxes, ha="center", va="center", fontsize=9)
         continue
     df = df.sort_values(["chrom_c", "pos"])
-    chroms = sorted(df["chrom_c"].unique())
+    chroms = sorted(df["chrom_c"].unique())  # Ss01..Ss11 sort naturally
     palette = [WONG["blue"], WONG["skyblue"]]
     xs = []
     cum = 0
@@ -380,22 +388,24 @@ for ax, trait in zip(axes.ravel(), TRAITS):
         xticks.append(cum + (sub["pos"].max() - sub["pos"].min()) / 2)
         xlabels.append(ch)
         cum += (sub["pos"].max() - sub["pos"].min()) + 5e6
-    m_eff = trait_sum.loc[(trait_sum["trait"] == trait) & (trait_sum["model"] == "M1_K"),
+    m_eff = trait_sum.loc[(trait_sum["trait"] == trait) & (trait_sum["model"] == "M2_KQ"),
                           "n_hits_FDR_0.10"]
-    alpha_bonf = 0.05 / 1672
+    alpha_bonf = 0.05 / 1625  # biochem scan marker count (QC-passed)
     bonf = -np.log10(alpha_bonf)
-    fdr10 = -np.log10(0.10 / 1672 * 100)  # rough FDR display line
+    fdr10 = -np.log10(0.10 / 1625 * 100)  # rough FDR display line
     ax.axhline(bonf, color=WONG["vermillion"], ls="--", lw=1,
                label=f"Bonferroni $\\alpha$ = {alpha_bonf:.2e}")
     ax.set_xticks(xticks)
     ax.set_xticklabels(xlabels, rotation=35, ha="right", fontsize=8)
     ax.set_ylabel("$-\\log_{10}(p)$")
-    ax.set_title(f"{trait}   {len(df)} cowpea-anchored SNPs")
+    # Per-panel trait id + marker count as in-axes text (top-LEFT, clear of
+    # the upper-right Bonferroni legend), not a baked title (no-title rule).
+    ax.text(0.01, 0.97, f"{trait}   {len(df)} AYB-anchored SNPs",
+            transform=ax.transAxes, ha="left", va="top", fontsize=9)
     ax.legend(loc="upper right", fontsize=8)
-fig.suptitle("Manhattan — MLM (K), cowpea-anchored marker subset",
-             y=1.02, fontsize=12)
-save(fig, "fig13_manhattan_M1_K")
-print("[fig] fig13_manhattan_M1_K")
+# No suptitle -- caption carries the descriptive title (no-title rule).
+save(fig, "fig13_manhattan_M2_KQ")
+print("[fig] fig13_manhattan_M2_KQ")
 
 
 # ---------------------------------------------------------------------------
@@ -448,8 +458,8 @@ ax.axhline(0, color="black", lw=0.6)
 ax.set_xticks(xpos)
 ax.set_xticklabels(TRAITS)
 ax.set_ylabel("Predictive ability (Pearson $r$)")
-ax.set_title("GBLUP genomic prediction across four seed-biochemistry traits "
-             "(per-rep distribution)")
+# No baked title -- caption carries it (no-title rule); the legend names the
+# two distributions.
 ax.bar([np.nan], [np.nan], color=WONG["blue"], edgecolor="black",
        label="Observed (5-fold CV x 50 reps)")
 ax.bar([np.nan], [np.nan], color="#c9c9c9", edgecolor="black",

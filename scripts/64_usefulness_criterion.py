@@ -238,8 +238,8 @@ def main() -> None:
     ax.axhline(0, color="grey", linewidth=0.5)
     ax.set_xlabel("Parental G_ij (relatedness; lower = more diverse)")
     ax.set_ylabel("Aggregate usefulness criterion (standardised z within scenario)")
-    ax.set_title("Allier 2019 usefulness criterion across the top-50 least-related cross pairs\n"
-                  "Circled points = top-10 under each scenario")
+    # No baked title -- the descriptive caption (and that circled points mark
+    # the top-10 per scenario) lives in the figure legend only (no-title rule).
     ax.legend(loc="lower left", fontsize=9, framealpha=0.95,
               edgecolor="none")
     fig.tight_layout()

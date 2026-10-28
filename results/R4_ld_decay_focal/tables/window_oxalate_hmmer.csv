@@ -1,0 +1,10 @@
+method,profile,window_gene,evalue,score,passes_threshold
+hmmsearch --cut_ga,PF00190 Cupin_1 (germin / oxalate oxidase),(none above gathering threshold),,,False
+hmmsearch --cut_ga,PF07883 Cupin_2 (oxalate decarboxylase),(none above gathering threshold),,,False
+hmmsearch --cut_ga,PF00501 AMP-binding (AAE3 oxalyl-CoA synthetase),(none above gathering threshold),,,False
+hmmsearch --cut_ga,PF13193 AMP-binding_C (AAE3),(none above gathering threshold),,,False
+hmmsearch --cut_ga,PF01554 MatE (MATE),(none above gathering threshold),,,False
+hmmsearch --cut_ga,PF11744 ALMT (positive control),AYBTSS11_029726,1.6e-175,576.4,True
+phmmer,AAE3_oxalyl_CoA_synthetase,(no hit),,,False
+phmmer,oxalate_oxidase_germin,(no hit),,,False
+phmmer,oxalate_decarboxylase,(no hit),,,False
