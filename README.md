@@ -39,7 +39,7 @@ READMEs give the exact command and parameters. The Python environment is pinned 
   1,625 markers at sample and marker call rate ≥ 0.90, MAF ≥ 0.05): Zenodo
   [10.5281/zenodo.22867224](https://doi.org/10.5281/zenodo.22867224) (open access).
 - **Reference genome**: *S. stenocarpa* chromosome-scale assembly, ENA
-  [PRJEB57813](https://www.ebi.ac.uk/ena/browser/view/PRJEB57813) (Shorinola et al. 2024);
+  [PRJEB57813](https://www.ebi.ac.uk/ena/browser/view/PRJEB57813) (Waweru et al. 2024);
   Funannotate annotation at Zenodo
   [10.5281/zenodo.13853757](https://doi.org/10.5281/zenodo.13853757).
 - Seed-quality phenotype data are held by the breeding program and available from the
